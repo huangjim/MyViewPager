@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#58000000"
+    android:gravity="bottom">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@color/color_white">
+
+        <ImageView
+            android:id="@+id/piece_wash_popup_item_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_marginBottom="20dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/clothes_background"
+            android:padding="5dp"
+            android:paddingBottom="5dp"
+            android:src="@drawable/basket_list_item_img01" />
+
+        <TextView
+            android:id="@+id/piece_wash_popup_item_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/piece_wash_popup_item_img"
+            android:layout_marginBottom="5dp"
+            android:layout_toRightOf="@+id/piece_wash_popup_item_img"
+            android:paddingTop="0dp"
+            android:text="@string/T_shirt"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/piece_wash_popup_item_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/piece_wash_popup_item_name"
+            android:layout_toRightOf="@+id/piece_wash_popup_item_img"
+            android:drawableLeft="@drawable/yuan"
+            android:drawablePadding="10dp"
+            android:text="@string/num_68"
+            android:textColor="@color/color_origin"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/piece_wash_popup_item_price"
+            android:layout_toRightOf="@+id/piece_wash_popup_item_price"
+            android:text="@string/mypackage"
+            android:textSize="19sp" />
+
+        <TextView
+            android:id="@+id/piece_wash_popup_item_descrise"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/piece_wash_popup_item_price"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="15dp"
+            android:layout_toRightOf="@+id/piece_wash_popup_item_img"
+            android:text="@string/popup_describe01"
+            android:textSize="12sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/piece_wash_popup_item_descrise"
+            android:layout_marginBottom="10dp"
+            android:layout_toRightOf="@+id/piece_wash_popup_item_img"
+            android:lineSpacingExtra="2dp"
+            android:lines="2"
+            android:text="@string/popup_decrisbe02"
+            android:textSize="12sp" />
+
+        <LinearLayout
+            android:id="@+id/piece_wash_btn_select"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@id/piece_wash_popup_item_img"
+            android:layout_marginRight="20dp"
+            android:gravity="center_vertical"
+
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/frag_popup_item_cut"
+                android:layout_width="50dp"
+                android:layout_height="40dp"
+                android:background="@drawable/basket_list_item_img06" />
+
+            <TextView
+                android:id="@+id/frag_popup_item_count"
+                android:layout_width="60dp"
+                android:layout_height="40dp"
+                android:background="@drawable/basket_list_item_img07"
+                android:gravity="center"
+                android:text="@string/num_1"
+                android:textColor="@color/color_origin"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/frag_popup_item_add"
+                android:layout_width="50dp"
+                android:layout_height="40dp"
+                android:background="@drawable/basket_list_item_img08" />
+        </LinearLayout>
+
+
+        <Button
+            android:id="@+id/piece_wash_popup_item_btn"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_below="@id/piece_wash_btn_select"
+            android:layout_marginBottom="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="20dp"
+            android:background="@color/color_blue"
+            android:text="@string/put_in_package"
+            android:textColor="@color/color_white" />
+
+
+    </RelativeLayout>
+</RelativeLayout>

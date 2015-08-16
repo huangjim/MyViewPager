@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_gray">
+
+    <RelativeLayout
+        android:id="@+id/frag_home_title"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerVertical="true"
+        android:background="@color/color_white">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignTop="@+id/frag_home_img"
+            android:layout_marginLeft="10dp"
+            android:drawablePadding="5dp"
+            android:drawableRight="@drawable/frag_home_chendu_img"
+
+            android:text="@string/frag_home_chendu"
+            android:textColor="@color/color_blue"
+            android:textSize="18sp" />
+
+        <ImageView
+            android:id="@+id/frag_home_img"
+            android:layout_width="100dp"
+            android:layout_height="25dp"
+            android:layout_centerInParent="true"
+            android:src="@drawable/frag_home_title" />
+    </RelativeLayout>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/frag_home_viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="110dp"
+        android:layout_below="@+id/frag_home_title">
+
+    </android.support.v4.view.ViewPager>
+
+    <LinearLayout
+        android:id="@+id/frag_home_index_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/frag_home_viewpager"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginEnd="34dp"
+        android:layout_marginRight="34dp"
+        android:orientation="horizontal"
+        android:padding="8dp">
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/frag_home_layout01"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/frag_home_viewpager"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/frag_home_btn01"
+            android:layout_width="wrap_content"
+            android:layout_height="75dp"
+            android:layout_marginLeft="20dp"
+            android:background="@drawable/frag_home_img01"
+            android:layout_weight="1"
+            android:layout_marginRight="10dp"/>
+
+        <Button
+            android:id="@+id/frag_home_btn02"
+            android:layout_width="wrap_content"
+            android:layout_height="75dp"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/frag_home_img02"
+            android:layout_weight="1"/>
+    </LinearLayout>
+    <Button
+        android:id="@+id/frag_home_btn03"
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:layout_below="@id/frag_home_layout01"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/frag_home_img03"
+        />
+    <Button
+        android:id="@+id/frag_home_btn04"
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:layout_below="@id/frag_home_btn03"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/frag_home_img04"
+        />
+    <Button
+        android:id="@+id/frag_home_btn05"
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:layout_below="@id/frag_home_btn04"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/frag_home_img05"
+        />
+
+
+
+
+
+</RelativeLayout>

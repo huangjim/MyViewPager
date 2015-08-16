@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:background="#ffffff"
+        android:layout_marginTop="2dp">
+
+        <TextView
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="15dp"
+            android:text="48"
+            android:textSize="28dp"
+            android:textColor="#ff4d0f"
+            android:drawableLeft="@drawable/yuan"
+            android:id="@+id/frag_basket_total"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            >
+
+        </TextView>
+        <TextView android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/frag_basket_total"
+            android:layout_centerVertical="true"
+            android:text="费用总计："
+            android:textSize="20sp"
+            >
+
+        </TextView>
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/frag_basket_img01"
+        android:layout_width="match_parent"
+        android:layout_height="130dp"
+        android:src="@drawable/frag_basket_img01"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp">
+
+    </ImageView>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+
+        >
+
+        <TextView
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="15dp"
+            android:text="18"
+            android:textSize="28dp"
+            android:textColor="#ff4d0f"
+            android:drawableLeft="@drawable/yuan"
+            android:id="@+id/frag_basket_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            >
+
+        </TextView>
+        <TextView android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/frag_basket_count"
+            android:layout_centerVertical="true"
+            android:text="合计："
+            android:textSize="28sp"
+            >
+        </TextView>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/frag_basket_userinfo"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#ffffff"
+        android:gravity="center_vertical">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="用户信息"
+            android:textSize="22sp"
+            android:layout_marginLeft="20dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="20dp"
+            android:text="填写"
+            android:textSize="20sp"
+            android:drawableRight="@drawable/frag_basket_img02"
+            android:drawablePadding="10dp"/>
+
+    </RelativeLayout>
+    <Button
+        android:id="@+id/frag_basket_pay"
+        android:layout_marginTop="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:background="@drawable/frag_basket_img03"
+
+        />
+
+</LinearLayout>
