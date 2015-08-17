@@ -88,6 +88,7 @@ public class Login extends Activity {
                     showToast("注册成功");
                     Intent intent = new Intent(Login.this, FragmentMainActivity.class);
                     startActivity(intent);
+                    finish();
 
                 } else {
                     try {
@@ -146,9 +147,9 @@ public class Login extends Activity {
         }
     }
 
-    /*@Override
+    @Override
     protected void onDestroy() {
         super.onDestroy();
         finish();
-    }*/
+    }
 }

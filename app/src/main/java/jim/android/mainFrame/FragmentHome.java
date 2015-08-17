@@ -59,6 +59,7 @@ public class FragmentHome extends Fragment {
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), PieceWashMain.class);
                 startActivity(intent);
+                getActivity().finish();
             }
         });
 
