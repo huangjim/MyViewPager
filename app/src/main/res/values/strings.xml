@@ -35,5 +35,8 @@
     <string name="num_2">2</string>
     <string name="num_8">8</string>
     <string name="contact_services">联系客服</string>
+    <string name="num_phone">18788888000</string>
+    <string name="referral_code">S19J6Q</string>
+    <string name="referral_code01">推荐码：</string>
 
 </resources>
