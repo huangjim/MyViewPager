@@ -134,8 +134,8 @@ public class PieceWashMain extends FragmentActivity implements ViewPager.OnPageC
                     btnWinter.setTextColor(Color.parseColor("#28ccfc"));
                     break;
                 case R.id.piece_wash_back:
-                    Intent intent=new Intent(PieceWashMain.this, FragmentMainActivity.class);
-                    startActivity(intent);
+                    /*Intent intent=new Intent(PieceWashMain.this, FragmentMainActivity.class);
+                    startActivity(intent);*/
                     finish();
             }
 

@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
 import android.widget.ImageView;
@@ -13,8 +15,10 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import jim.android.adapter.BasketAdapter;
 import jim.android.adapter.MyPagerAdapter;
 import jim.android.indexViewpager.R;
+import jim.android.utils.BasketItemMsg;
 
 /**
  * Created by Jim Huang on 2015/8/3.
@@ -24,16 +28,24 @@ public class FragmentMainActivity extends FragmentActivity implements ViewPager.
     private FragmentBasket fragmentBasket;
     private FragmentMy fragmentMy;
     private FragmentMore fragmentMore;
+
     private LinearLayout buttonHome,buttonBasket,buttonMy,buttonMore;
     private ImageView imageHome,imageBasket,imageMy,imageMore;
     private TextView textHome,textBasket,textMy,textMore;
     private ViewPager viewPager;
     private ArrayList<Fragment> list;
+    public static ArrayList<BasketItemMsg> basketList;
+
+    public ImageView has_basket;
 
     private int frameID;
 
+    static {
+        basketList=new ArrayList<>();
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Log.i("MainActivity log","onCreate");
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_cotent_main);
@@ -73,6 +85,10 @@ public class FragmentMainActivity extends FragmentActivity implements ViewPager.
         FragmentHome fragmentHome = new FragmentHome();
 
         fragmentBasket=new FragmentBasket();
+        //basket=new Basket();
+        has_basket=(ImageView) LayoutInflater.from(FragmentMainActivity.this).inflate(
+                R.layout.activity_fragment_basket,null).findViewById(R.id.iv_empty);
+
 
         fragmentMy=new FragmentMy();
 
@@ -81,6 +97,7 @@ public class FragmentMainActivity extends FragmentActivity implements ViewPager.
         list=new ArrayList<Fragment>();
         list.add(fragmentHome);
         list.add(fragmentBasket);
+        //list.add(basket);
         list.add(fragmentMy);
         list.add(fragmentMore);
 
@@ -180,5 +197,52 @@ public class FragmentMainActivity extends FragmentActivity implements ViewPager.
         textMy.setTextColor(getResources().getColor(R.color.btn_textcolor));
         textMore.setTextColor(getResources().getColor(R.color.btn_textcolor));
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        Log.i("MainActivity log", "onResume");
+        if (basketList.size()!=0){
+
+            has_basket.setVisibility(View.INVISIBLE);
+        }else {
+            has_basket.setVisibility(View.VISIBLE);
+        }
+
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.i("MainActivity log","onDestroy");
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.i("MainActivity log", "onPause");
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Log.i("MainActivity log", "onStart");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.i("MainActivity log", "onStop");
+    }
+
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        if (hasFocus){
+
+            new BasketAdapter(basketList);
+        }
     }
 }

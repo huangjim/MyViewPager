@@ -107,10 +107,10 @@ public class PlatformGridView extends LinearLayout implements
 		float scrH = com.mob.tools.utils.R.getScreenHeight(getContext());
 		float whR = scrW / scrH;
 		if (whR < 0.63) {
-			COLUMN_PER_LINE = 3;
+			COLUMN_PER_LINE = 4;
 			LINE_PER_PAGE = 3;
 		} else if (whR < 0.75) {
-			COLUMN_PER_LINE = 3;
+			COLUMN_PER_LINE = 4;
 			LINE_PER_PAGE = 2;
 		} else {
 			LINE_PER_PAGE = 1;

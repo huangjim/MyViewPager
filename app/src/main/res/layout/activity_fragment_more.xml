@@ -30,7 +30,7 @@
     <jim.android.mainFrame.CustomViewForMore
         android:layout_marginTop="20dp"
         android:id="@+id/myitem01"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         my:leftImage="@drawable/leftimage01"
         my:myText="联系客服"
@@ -40,7 +40,7 @@
     <jim.android.mainFrame.CustomViewForMore
         android:layout_marginTop="2dp"
         android:id="@+id/myitem02"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         my:leftImage="@drawable/leftimage02"
         my:myText="常见问题"
@@ -50,7 +50,7 @@
     <jim.android.mainFrame.CustomViewForMore
         android:layout_marginTop="2dp"
         android:id="@+id/myitem03"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         my:leftImage="@drawable/leftimage03"
         my:myText="服务范围"
@@ -60,7 +60,7 @@
     <jim.android.mainFrame.CustomViewForMore
         android:layout_marginTop="2dp"
         android:id="@+id/myitem04"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         my:leftImage="@drawable/leftimage04"
         my:myText="关于我们"
@@ -70,7 +70,7 @@
     <jim.android.mainFrame.CustomViewForMore
         android:layout_marginTop="2dp"
         android:id="@+id/myitem05"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         my:leftImage="@drawable/leftimage05"
         my:myText="意见协议"
@@ -80,7 +80,7 @@
     <jim.android.mainFrame.CustomViewForMore
         android:layout_marginTop="2dp"
         android:id="@+id/myitem06"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         my:leftImage="@drawable/leftimage06"
         my:myText="用户反馈"

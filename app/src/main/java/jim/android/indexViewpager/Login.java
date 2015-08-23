@@ -82,13 +82,21 @@ public class Login extends Activity {
                 final String strPhone = textPhone.getText().toString();
 
                 if (patternForPhone(strPhone)) {
-
-                    editor.putString("phone", strPhone);
-                    editor.apply();
                     showToast("注册成功");
-                    Intent intent = new Intent(Login.this, FragmentMainActivity.class);
-                    startActivity(intent);
-                    finish();
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            try {
+                                editor.putString("phone", strPhone);
+                                editor.apply();
+                                Intent intent = new Intent(Login.this, FragmentMainActivity.class);
+                                startActivity(intent);
+                                finish();
+                            }catch (Exception e){
+                                e.printStackTrace();
+                            }
+                        }
+                    }).start();
 
                 } else {
                     try {
@@ -150,6 +158,7 @@ public class Login extends Activity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        System.gc();
         finish();
     }
 }

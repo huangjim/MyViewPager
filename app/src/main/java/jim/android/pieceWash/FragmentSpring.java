@@ -18,10 +18,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
+import jim.android.adapter.BasketAdapter;
 import jim.android.adapter.MyPieceGridAdapter;
 import jim.android.indexViewpager.R;
+import jim.android.mainFrame.FragmentMainActivity;
+import jim.android.utils.BasketItemMsg;
 import jim.android.utils.PieceItemMsg;
 
 /**
@@ -45,7 +49,10 @@ public class FragmentSpring extends Fragment {
     private TextView popupItemAdd;
     private Button popupItemBtn;
     private Handler handler;
-    private int strCut;
+    private int strCut=1;
+
+    private BasketAdapter adapter;
+    private PieceWashPopup pieceWashPopup;
 
 
     @Override
@@ -60,6 +67,7 @@ public class FragmentSpring extends Fragment {
     private void initView() {
 
 
+        adapter=new BasketAdapter();
         gridView = (GridView) view.findViewById(R.id.grid_spring);
         imageId = new int[]{R.drawable.basket_list_item_img01, R.drawable.basket_list_item_img02,
                 R.drawable.basket_list_item_img03, R.drawable.basket_list_item_img10,
@@ -80,25 +88,44 @@ public class FragmentSpring extends Fragment {
 
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
+            public void onItemClick(AdapterView<?> parent, View view, final int position, long id) {
                 Toast.makeText(getActivity(), position + "", Toast.LENGTH_SHORT).show();
-
                 view = LayoutInflater.from(getActivity()).inflate(R.layout.activity_piece_wash_popupitem, null);
-
-                popupWindow = new PopupWindow(view, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-
+                pieceItemMsg= (PieceItemMsg) gridView.getItemAtPosition(position);
+                Iterator iterator=FragmentMainActivity.basketList.iterator();
+                Object localObject = null;
+                boolean bool=false;
+                while (true)
+                {
+                    if (!iterator.hasNext())
+                    {
+                        pieceWashPopup=new PieceWashPopup(getActivity(),pieceItemMsg,view,bool,(BasketItemMsg)localObject);
+                        pieceWashPopup.setContentView(view);
+                        pieceWashPopup.setWindowLayoutMode(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+                        pieceWashPopup.setFocusable(true);
+                        ColorDrawable drawable = new ColorDrawable(Color.parseColor("#58000000"));
+                        pieceWashPopup.setBackgroundDrawable(drawable);
+                        pieceWashPopup.setOutsideTouchable(true);
+                        pieceWashPopup.setAnimationStyle(R.style.PopupAnimation);
+                        pieceWashPopup.showAtLocation(view, Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, 0);
+                        break;
+                    }
+                    BasketItemMsg b = (BasketItemMsg)iterator.next();
+                    if (!b.getClothesName().equals(pieceItemMsg.getClothesName()))
+                        continue;
+                    bool = true;
+                    localObject = b;
+                }
+                /*popupWindow = new PopupWindow(view, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
                 popupWindow.setFocusable(true);
                 ColorDrawable drawable = new ColorDrawable(Color.parseColor("#58000000"));
                 popupWindow.setBackgroundDrawable(drawable);
                 popupWindow.setOutsideTouchable(true);
                 popupWindow.setAnimationStyle(R.style.PopupAnimation);
-                popupWindow.showAtLocation(view, Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, 0);
-                //ColorDrawable drawable=new ColorDrawable(Color.WHITE);
-                //popupWindow.setBackgroundDrawable(drawable);
-                //backgroundAlpha(0.5f);
+                popupWindow.showAtLocation(view, Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, 0);*/
 
-                popupItemImg = (ImageView) view.findViewById(R.id.piece_wash_popup_item_img);
+
+               /* popupItemImg = (ImageView) view.findViewById(R.id.piece_wash_popup_item_img);
                 popupItemImg.setImageResource(list.get(position).getImageId());
                 popupItemName = (TextView) view.findViewById(R.id.piece_wash_popup_item_name);
                 popupItemName.setText(list.get(position).getClothesName());
@@ -110,15 +137,6 @@ public class FragmentSpring extends Fragment {
                 popupItemAdd = (TextView) view.findViewById(R.id.frag_popup_item_add);
                 popupItemBtn = (Button) view.findViewById(R.id.piece_wash_popup_item_btn);
 
-
-                popupItemBtn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        popupWindow.dismiss();
-                        //backgroundAlpha(1f);
-                    }
-                });
-
                 popupItemCut.setOnClickListener(new View.OnClickListener() {
 
                     @Override
@@ -126,7 +144,7 @@ public class FragmentSpring extends Fragment {
 
                         String str = popupItemNum.getText().toString().trim();
                         strCut = Integer.parseInt(str);
-                        if (strCut > 0) {
+                        if (strCut > 1) {
                             strCut--;
                             popupItemNum.setText(strCut + "");
                         }
@@ -143,18 +161,28 @@ public class FragmentSpring extends Fragment {
                         popupItemNum.setText(strCut + "");
                     }
                 });
+
+                popupItemBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        int num=Integer.parseInt(popupItemNum.getText().toString());
+                        if (num>=1){
+                            BasketItemMsg basketItemMsg=new BasketItemMsg();
+                            basketItemMsg.setImageId(list.get(position).getImageId());
+                            basketItemMsg.setClothesName(list.get(position).getClothesName());
+                            basketItemMsg.setPrice(list.get(position).getPrice());
+                            basketItemMsg.setAccount(num);
+                            FragmentMainActivity.basketList.add(basketItemMsg);
+                        }
+
+                        popupWindow.dismiss();
+                        //backgroundAlpha(1f);
+                    }
+                });*/
             }
         });
 
-
     }
-
-   /* public void backgroundAlpha(float bgAlpha)
-    {
-        WindowManager.LayoutParams lp = getActivity().getWindow().getAttributes();
-        lp.alpha = bgAlpha; //0.0-1.0
-        getActivity().getWindow().setAttributes(lp);
-    }*/
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {

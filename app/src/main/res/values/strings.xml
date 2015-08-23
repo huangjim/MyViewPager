@@ -38,5 +38,7 @@
     <string name="num_phone">18788888000</string>
     <string name="referral_code">S19J6Q</string>
     <string name="referral_code01">推荐码：</string>
+    <string name="mony_text">余额支付</string>
+    <string name="epay_text">支付宝支付</string>
 
 </resources>

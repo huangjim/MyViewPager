@@ -1,32 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/DIMEN_40PX"
+    android:background="@color/color_gray">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:orientation="horizontal"
         android:background="#ffffff"
-        android:layout_marginTop="2dp">
+        android:layout_marginTop="1dp"
+        android:gravity="center_vertical"
+        android:layout_marginBottom="10dp">
+
 
         <TextView
             android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
             android:layout_marginRight="15dp"
             android:text="48"
-            android:textSize="28dp"
+            android:textSize="20sp"
             android:textColor="#ff4d0f"
-            android:drawableLeft="@drawable/yuan"
-            android:id="@+id/frag_basket_total"
+            android:id="@+id/allprice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
             >
 
         </TextView>
-        <TextView android:layout_width="wrap_content"
+        <TextView
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toLeftOf="@+id/frag_basket_total"
+            android:text="¥"
+            android:textSize="20sp"
+            android:textColor="#ff4d0f"
+            android:layout_toLeftOf="@id/allprice"/>
+        <TextView
+            android:layout_marginRight="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@id/allprice"
             android:layout_centerVertical="true"
             android:text="费用总计："
             android:textSize="20sp"
@@ -35,16 +48,46 @@
         </TextView>
     </RelativeLayout>
 
-    <ImageView
-        android:id="@+id/frag_basket_img01"
+    <FrameLayout
+        android:layout_marginTop="20dp"
         android:layout_width="match_parent"
-        android:layout_height="130dp"
-        android:src="@drawable/frag_basket_img01"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp">
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="1dp">
+        <ImageView
+            android:visibility="invisible"
+            android:id="@+id/frag_basket_img01"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:src="@drawable/frag_basket_img01"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp">
+        </ImageView>
+        <RelativeLayout
+            android:id="@+id/frag_basket_quan"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="#ffffff"
+            android:gravity="center_vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="洗衣券"
+                android:textSize="20sp"
+                android:layout_marginLeft="@dimen/DIMEN_20PX"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="20dp"
+                android:text="点击使用"
+                android:textSize="20sp"
+                android:drawableRight="@drawable/frag_basket_img02"
+                android:drawablePadding="10dp"/>
 
-    </ImageView>
-    <RelativeLayout
+        </RelativeLayout>
+    </FrameLayout>
+
+    <!--<RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:orientation="horizontal"
@@ -74,32 +117,11 @@
             android:textSize="28sp"
             >
         </TextView>
-    </RelativeLayout>
+    </RelativeLayout>-->
 
-    <RelativeLayout
-        android:id="@+id/frag_basket_userinfo"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="#ffffff"
-        android:gravity="center_vertical">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="用户信息"
-            android:textSize="22sp"
-            android:layout_marginLeft="20dp"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="20dp"
-            android:text="填写"
-            android:textSize="20sp"
-            android:drawableRight="@drawable/frag_basket_img02"
-            android:drawablePadding="10dp"/>
 
-    </RelativeLayout>
-    <Button
+<!--    <Button
+        android:focusable="false"
         android:id="@+id/frag_basket_pay"
         android:layout_marginTop="30dp"
         android:layout_width="match_parent"
@@ -108,6 +130,117 @@
         android:layout_marginRight="15dp"
         android:background="@drawable/frag_basket_img03"
 
-        />
+        />-->
+    <FrameLayout
+        android:background="@color/color_white"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <RelativeLayout
+            android:visibility="invisible"
+            android:id="@+id/frag_basket_userinfo"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="#ffffff"
+            android:gravity="center_vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="用户信息"
+                android:textSize="20sp"
+                android:layout_marginLeft="20dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="20dp"
+                android:text="填写"
+                android:textSize="20sp"
+                android:drawableRight="@drawable/frag_basket_img02"
+                android:drawablePadding="10dp"/>
+
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/have_location"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="10dp"
+            android:layout_marginLeft="@dimen/DIMEN_20PX"
+            >
+
+            <LinearLayout
+
+                android:id="@+id/layout_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="@dimen/DIMEN_30PX"
+                    android:layout_height="@dimen/DIMEN_50PX"
+                    android:src="@drawable/image_name" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="黄先生"
+                    android:textSize="16dp" />
+            </LinearLayout>
+
+            <LinearLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/layout_name"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="@dimen/DIMEN_30PX"
+                    android:layout_height="@dimen/DIMEN_50PX"
+                    android:src="@drawable/image_location" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="青羊区，南大街"
+                    android:textSize="16dp" />
+            </LinearLayout>
+
+            <LinearLayout
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/DIMEN_200PX"
+                android:layout_toRightOf="@id/layout_name"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="@dimen/DIMEN_30PX"
+                    android:layout_height="@dimen/DIMEN_50PX"
+                    android:src="@drawable/image_phone" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="13246724187"
+                    android:textSize="16dp" />
+            </LinearLayout>
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="15dp"
+                android:background="@drawable/frag_basket_img02" />
+
+        </RelativeLayout>
+    </FrameLayout>
 
 </LinearLayout>

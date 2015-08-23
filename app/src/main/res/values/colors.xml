@@ -5,4 +5,7 @@
     <color name="color_gray">#ededed</color>
     <color name="color_blue">#2bccfc</color>
     <color name="color_origin">#ff4d0f</color>
+    <color name="color_f4f4f4">#f4f4f4</color>
+    <color name="color_ff735c">#ff735c</color>
+    <color name="color_ff5a3e">#ff5a3e</color>
 </resources>
