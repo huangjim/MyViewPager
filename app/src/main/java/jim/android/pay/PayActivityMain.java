@@ -40,10 +40,12 @@ public class PayActivityMain extends FragmentActivity implements ViewPager.OnPag
 
         back.setOnClickListener(new BtnListener());
 
-        list=new ArrayList<Fragment>();
+        list= new ArrayList<>();
         list.add(new PayFragment01());
         list.add(new PayFragment02());
-        viewPager.setAdapter(new MyPagerAdapter(getSupportFragmentManager(),list));
+        viewPager.setCurrentItem(0);
+        viewPager.setAdapter(new MyPagerAdapter(getSupportFragmentManager(), list));
+        viewPager.setOnPageChangeListener(this);
     }
 
     @Override
@@ -57,11 +59,12 @@ public class PayActivityMain extends FragmentActivity implements ViewPager.OnPag
         initBtn();
         switch (position){
             case 0:
-                btnMoney.setBackgroundResource(R.color.color_ff735c);
+                btnMoney.setBackgroundColor(Color.parseColor("#ff735c"));
                 btnMoney.setTextColor(Color.parseColor("#ffffff"));
                 break;
             case 1:
-                btnEpay.setBackgroundResource(R.color.color_ff735c);
+                btnEpay.setBackgroundColor(Color.parseColor("#ff735c"));
+                //btnEpay.setBackgroundResource(R.color.color_ff735c);
                 btnEpay.setTextColor(Color.parseColor("#ffffff"));
                 break;
         }
@@ -87,6 +90,19 @@ public class PayActivityMain extends FragmentActivity implements ViewPager.OnPag
             switch (v.getId()){
                 case R.id.back:
                     finish();
+                    break;
+                case R.id.pay_money_btn:
+                    initBtn();
+                    viewPager.setCurrentItem(0);
+                    btnMoney.setBackgroundColor(Color.parseColor("#ff735c"));
+                    btnMoney.setTextColor(Color.parseColor("#ffffff"));
+                    break;
+                case R.id.pay_epay_btn:
+                    initBtn();
+                    viewPager.setCurrentItem(1);
+                    btnEpay.setBackgroundColor(Color.parseColor("#ff735c"));
+                    //btnEpay.setBackgroundResource(R.color.color_ff735c);
+                    btnEpay.setTextColor(Color.parseColor("#ffffff"));
                     break;
 
             }

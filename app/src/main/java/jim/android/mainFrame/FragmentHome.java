@@ -34,7 +34,7 @@ import jim.android.utils.PieceItemMsg;
 /**
  * Created by Jim Huang on 2015/8/3.
  */
-public class FragmentHome extends Fragment implements View.OnClickListener{
+public class FragmentHome extends LazyFragment implements View.OnClickListener {
 
     private View view;
     private ViewPager viewPager;
@@ -46,55 +46,32 @@ public class FragmentHome extends Fragment implements View.OnClickListener{
             R.drawable.frag_home_img03, R.drawable.frag_home_img04, R.drawable.frag_home_img05, R.drawable.frag_home_img03
     };
 
-    private Button pieceWashBtn;
-    private Button packetWashBtn;
+    private boolean isPrepared;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         //return super.onCreateView(inflater, container, savedInstanceState);
         view = inflater.inflate(R.layout.activity_fragment_home, container, false);
-
+        isPrepared = true;
         return view;
     }
 
     private void initView() {
 
-        pieceWashBtn = (Button) view.findViewById(R.id.frag_home_btn01);
-        packetWashBtn=(Button)view.findViewById(R.id.frag_home_btn02);
+        Button pieceWashBtn = (Button) view.findViewById(R.id.frag_home_btn01);
+        Button packetWashBtn = (Button) view.findViewById(R.id.frag_home_btn02);
         viewPager = (ViewPager) view.findViewById(R.id.frag_home_viewpager);
         layout = (LinearLayout) view.findViewById(R.id.frag_home_index_container);
         pieceWashBtn.setOnClickListener(this);
         packetWashBtn.setOnClickListener(this);
-
 
     }
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        initView();
-        readImage();
+        lazyLoad();
 
-        imageView = new ImageView[bitmapList.size()];
-        for (int i = 0; i < bitmapList.size(); i++) {
-            ImageView image = new ImageView(getActivity());
-            image.setImageBitmap(bitmapList.get(i));
-            image.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
-            imageView[i] = image;
-        }
-
-        for (int i = 0; i < bitmapList.size(); i++) {
-            ImageView image = new ImageView(getActivity());
-            image.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-            image.setPadding(8, 8, 8, 8);
-            image.setImageResource(R.drawable.circle_selector);
-            image.setSelected(i == 0 ? true : false);
-            layout.addView(image);
-        }
-
-        viewPager.setAdapter(new MyPAdapter(imageView));
-        viewPager.setCurrentItem(0);
-        viewPager.setOnPageChangeListener(new MyPChangeAdapter(layout));
 
     }
 
@@ -127,19 +104,19 @@ public class FragmentHome extends Fragment implements View.OnClickListener{
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.frag_home_btn01:
                 Intent intent = new Intent(getActivity(), PieceWashMain.class);
                 startActivity(intent);
                 break;
             case R.id.frag_home_btn02:
-                Iterator iterator=FragmentMainActivity.basketList.iterator();
+                Iterator iterator = FragmentMainActivity.basketList.iterator();
                 Object localObject = null;
-                boolean bool=false;
-                while (true){
-                    if (!iterator.hasNext()){
-                        View view=LayoutInflater.from(getActivity()).inflate(R.layout.packetwashpopup,null);
-                        PacketWashPopup popup=new PacketWashPopup(getActivity(),view,bool,(BasketItemMsg)localObject);
+                boolean bool = false;
+                while (true) {
+                    if (!iterator.hasNext()) {
+                        View view = LayoutInflater.from(getActivity()).inflate(R.layout.packetwashpopup, null);
+                        PacketWashPopup popup = new PacketWashPopup(getActivity(), view, bool, (BasketItemMsg) localObject);
                         popup.setContentView(view);
                         popup.setWindowLayoutMode(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
                         popup.setFocusable(true);
@@ -150,15 +127,44 @@ public class FragmentHome extends Fragment implements View.OnClickListener{
                         popup.showAtLocation(view, Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, 0);
                         break;
                     }
-                    BasketItemMsg b=(BasketItemMsg)iterator.next();
+                    BasketItemMsg b = (BasketItemMsg) iterator.next();
                     if (!b.getClothesName().equals("袋洗"))
                         continue;
-                    bool=true;
-                    localObject=b;
+                    bool = true;
+                    localObject = b;
                 }
                 break;
 
         }
 
+    }
+
+    @Override
+    protected void lazyLoad() {
+        if (!isPrepared || !isVisible)
+            return;
+        Log.i("Jim log", "Home can be excutee?");
+        initView();
+        readImage();
+        imageView = new ImageView[bitmapList.size()];
+        for (int i = 0; i < bitmapList.size(); i++) {
+            ImageView image = new ImageView(getActivity());
+            image.setImageBitmap(bitmapList.get(i));
+            image.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+            imageView[i] = image;
+        }
+
+        for (int i = 0; i < bitmapList.size(); i++) {
+            ImageView image = new ImageView(getActivity());
+            image.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+            image.setPadding(8, 8, 8, 8);
+            image.setImageResource(R.drawable.circle_selector);
+            image.setSelected(0 == i ? true : false);
+            layout.addView(image);
+        }
+
+        viewPager.setAdapter(new MyPAdapter(imageView));
+        viewPager.setCurrentItem(0);
+        viewPager.setOnPageChangeListener(new MyPChangeAdapter(layout));
     }
 }

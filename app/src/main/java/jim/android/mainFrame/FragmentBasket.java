@@ -157,6 +157,8 @@ public class FragmentBasket extends LazyFragment implements View.OnClickListener
         if (!isPrepared||!isVisible)
             return;
         initView();
+
+        Log.i("Jim log","Basket can be excutee?");
         adapter=new BasketAdapter(FragmentMainActivity.basketList, getActivity(),ivEmpty,displayPrice);
         myListView.setAdapter(adapter);
         if (FragmentMainActivity.basketList.size()==0){

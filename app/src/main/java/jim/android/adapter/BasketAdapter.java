@@ -58,6 +58,7 @@ public class BasketAdapter extends BaseAdapter {
     @Override
     public int getCount() {
         if (list.size() == 0) {
+            ivEmpty.setVisibility(View.VISIBLE);
             return 0;
         }
         return list.size() + 1;
