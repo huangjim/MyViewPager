@@ -23,7 +23,7 @@ import jim.android.utils.BasketItemMsg;
 /**
  * Created by Jim Huang on 2015/8/3.
  */
-public class FragmentBasket extends Fragment implements View.OnClickListener{
+public class FragmentBasket extends LazyFragment implements View.OnClickListener{
 
     /*private int imageId[]=new int[]{R.drawable.basket_list_item_img01,R.drawable.basket_list_item_img02,R.drawable.basket_list_item_img03};
     private String clothesName[]=new String[]{"衬衫","短风衣","T恤"};
@@ -34,24 +34,26 @@ public class FragmentBasket extends Fragment implements View.OnClickListener{
     private List<BasketItemMsg> listMsg;
     private ImageView ivEmpty;
     private BasketAdapter adapter;
-    private TextView deleteAll;
     private TextView displayPrice;
-    private TextView pay;
+    private boolean isPrepared;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         Log.i("FragmentBasket log", "onCreateView");
         view=inflater.inflate(R.layout.activity_fragment_basket,container,false);
-        initView();
+        isPrepared=true;
+        lazyLoad();
+
         return view;
     }
 
     private void initView() {
         myListView = (ListView) view.findViewById(R.id.basket_list);
-        listMsg = new ArrayList<BasketItemMsg>();
+        listMsg = new ArrayList<>();
         ivEmpty = (ImageView) view.findViewById(R.id.iv_empty);
-        pay=(TextView)view.findViewById(R.id.btnpay);
-        deleteAll=(TextView)view.findViewById(R.id.deleteAll);
+        TextView pay = (TextView) view.findViewById(R.id.btnpay);
+        TextView deleteAll = (TextView) view.findViewById(R.id.deleteAll);
         displayPrice=(TextView)view.findViewById(R.id.price_pay);
 
         pay.setOnClickListener(this);
@@ -80,13 +82,7 @@ public class FragmentBasket extends Fragment implements View.OnClickListener{
     public void onResume() {
         super.onResume();
         Log.i("FragmentBasket log", "onResume");
-        adapter=new BasketAdapter(FragmentMainActivity.basketList, getActivity(),ivEmpty,displayPrice);
-        myListView.setAdapter(adapter);
-        if (FragmentMainActivity.basketList.size()==0){
-            ivEmpty.setVisibility(View.VISIBLE);
-        } else {
-            ivEmpty.setVisibility(View.INVISIBLE);
-        }
+
 
     }
 
@@ -100,6 +96,8 @@ public class FragmentBasket extends Fragment implements View.OnClickListener{
                 break;
             case R.id.deleteAll:
                 if (FragmentMainActivity.basketList.size()!=0){
+                    FragmentMainActivity.basketList.clear();
+                    adapter.notifyDataSetChanged();
                     ivEmpty.setVisibility(View.VISIBLE);
                 }
                 break;
@@ -152,5 +150,19 @@ public class FragmentBasket extends Fragment implements View.OnClickListener{
     public void onDestroyView() {
         super.onDestroyView();
         Log.i("FragmentBasket log", "onDestroyView");
+    }
+
+    @Override
+    protected void lazyLoad() {
+        if (!isPrepared||!isVisible)
+            return;
+        initView();
+        adapter=new BasketAdapter(FragmentMainActivity.basketList, getActivity(),ivEmpty,displayPrice);
+        myListView.setAdapter(adapter);
+        if (FragmentMainActivity.basketList.size()==0){
+            ivEmpty.setVisibility(View.VISIBLE);
+        } else {
+            ivEmpty.setVisibility(View.INVISIBLE);
+        }
     }
 }

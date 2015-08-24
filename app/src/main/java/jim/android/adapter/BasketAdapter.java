@@ -17,7 +17,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import jim.android.indexViewpager.R;
+import jim.android.mainFrame.FragmentBasket;
 import jim.android.mainFrame.FragmentMainActivity;
+import jim.android.mainFrame.LazyFragment;
 import jim.android.pay.PayActivityMain;
 import jim.android.utils.BasketItemMsg;
 
@@ -93,10 +95,9 @@ public class BasketAdapter extends BaseAdapter {
 
         int count = getItemViewType(position);
 
-
         switch (count) {
             case ITEM:
-                ViewHolder holder = null;
+                ViewHolder holder;
                 if (convertView == null) {
                     holder = new ViewHolder();
                     convertView = LayoutInflater.from(context).inflate(R.layout.frag_basket_list_item, null);
@@ -121,6 +122,10 @@ public class BasketAdapter extends BaseAdapter {
                             list.remove(position);
                             notifyDataSetChanged();
                         } else if (list.size() == 0) {
+
+                            list.clear();
+                            notifyDataSetChanged();
+
                             ivEmpty.setVisibility(View.VISIBLE);
                         }
                     }
@@ -169,10 +174,11 @@ public class BasketAdapter extends BaseAdapter {
         for (int i = 0; ; ++i) {
             if (i >= this.list.size())
                 return f;
-            BasketItemMsg basketItemMsg = (BasketItemMsg) this.list.get(i);
+            BasketItemMsg basketItemMsg = this.list.get(i);
             f += basketItemMsg.getPrice() * basketItemMsg.getAccount();
         }
     }
+
 
     class ViewHolder {
         private ImageView imageView;
