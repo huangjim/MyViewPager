@@ -80,7 +80,7 @@ public class MyBaseAdapter extends BaseAdapter {
                     convertView = LayoutInflater.from(context).inflate(R.layout.frag_basket_list_item, null);
                     imageView = (ImageView) convertView.findViewById(R.id.frag_basket_item_clothseimg);
                     clothesName = (TextView) convertView.findViewById(R.id.frag_basket_item_clothsename);
-                    accoumt = (TextView) convertView.findViewById(R.id.frag_basket_item_count);
+                    accoumt = (TextView) convertView.findViewById(R.id.item_count);
                     price = (TextView) convertView.findViewById(R.id.frag_basket_item_price);
                     imageView.setImageResource(list.get(position).getImageId());
                     clothesName.setText(list.get(position).getClothesName());
