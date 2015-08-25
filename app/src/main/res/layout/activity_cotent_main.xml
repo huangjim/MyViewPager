@@ -42,7 +42,7 @@
                 android:id="@+id/mybutton_home_img"
                 android:layout_width="30dp"
                 android:layout_height="28dp"
-                android:background="@drawable/main_home_click"/>
+                android:src="@drawable/main_home_click"/>
             <TextView
                 android:id="@+id/mybutton_home_txt"
                 android:paddingTop="3dp"
@@ -64,7 +64,7 @@
                 android:id="@+id/mybutton_basket_img"
                 android:layout_width="30dp"
                 android:layout_height="28dp"
-                android:background="@drawable/main_basket_selector"/>
+                android:src="@drawable/main_basket_normal"/>
             <TextView
                 android:id="@+id/mybutton_basket_txt"
                 android:paddingTop="3dp"
@@ -86,7 +86,7 @@
                 android:id="@+id/mybutton_my_img"
                 android:layout_width="30dp"
                 android:layout_height="28dp"
-                android:background="@drawable/main_my_selector"/>
+                android:src="@drawable/main_my_selector"/>
             <TextView
                 android:id="@+id/mybutton_my_txt"
                 android:paddingTop="3dp"
@@ -108,7 +108,7 @@
                 android:id="@+id/mybutton_more_img"
                 android:layout_width="30dp"
                 android:layout_height="28dp"
-                android:background="@drawable/main_more_selector"/>
+                android:src="@drawable/main_more_selector"/>
             <TextView
                 android:id="@+id/mybutton_more_txt"
                 android:paddingTop="3dp"
@@ -119,6 +119,5 @@
                 android:textColor="@color/btn_textcolor"/>
         </LinearLayout>
     </LinearLayout>
-
 
 </RelativeLayout>

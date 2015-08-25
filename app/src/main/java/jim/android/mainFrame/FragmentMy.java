@@ -22,7 +22,7 @@ import jim.android.indexViewpager.R;
 /**
  * Created by Jim Huang on 2015/8/4.
  */
-public class FragmentMy extends Fragment {
+public class FragmentMy extends LazyFragment {
 
     private View view;
     private int imageId[]=new int[]{
@@ -117,5 +117,10 @@ public class FragmentMy extends Fragment {
 
 // 启动分享GUI
         oks.show(getActivity());
+    }
+
+    @Override
+    protected void lazyLoad() {
+
     }
 }

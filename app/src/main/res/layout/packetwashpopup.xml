@@ -97,7 +97,8 @@
                 android:id="@+id/packet_item_cut"
                 android:layout_width="50dp"
                 android:layout_height="40dp"
-                android:background="@drawable/basket_list_item_img06" />
+                android:background="@drawable/cut_sel"
+                />
 
             <TextView
                 android:id="@+id/packet_item_count"
@@ -113,9 +114,8 @@
                 android:id="@+id/packet_item_add"
                 android:layout_width="50dp"
                 android:layout_height="40dp"
-                android:background="@drawable/basket_list_item_img08" />
+                android:background="@drawable/add_sel"/>
         </LinearLayout>
-
 
         <Button
             android:id="@+id/packet_item_btn"

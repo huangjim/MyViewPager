@@ -22,13 +22,10 @@ import jim.android.mainFrame.FragmentMainActivity;
  */
 public class Login extends Activity {
 
-    private final String LOCAL_PASSWORD="pass";
     private Button getCodeButton;
-    private Button registButton;
     private Boolean flag=false;
     private EditText textPhone;
     private EditText textCode;
-    private SharedPreferences sharedPre;
     private SharedPreferences.Editor editor;
 
     @Override
@@ -43,12 +40,13 @@ public class Login extends Activity {
     private void initView() {
         final CountTime time=new CountTime(60000,1000);
         getCodeButton=(Button)findViewById(R.id.bt_code);
-        registButton=(Button)findViewById(R.id.bt_register);
+        Button registButton = (Button) findViewById(R.id.bt_register);
         textPhone=(EditText)findViewById(R.id.et_phone);
         textCode=(EditText)findViewById(R.id.et_code);
 
-        sharedPre=getSharedPreferences(LOCAL_PASSWORD,MODE_PRIVATE);
-        editor=sharedPre.edit();
+        String LOCAL_PASSWORD = "pass";
+        SharedPreferences sharedPre = getSharedPreferences(LOCAL_PASSWORD, MODE_PRIVATE);
+        editor= sharedPre.edit();
        /* registButton.setClickable(false);
         registButton.setBackgroundColor(Color.parseColor("#bcbdc3"));
 
@@ -92,7 +90,7 @@ public class Login extends Activity {
                                 Intent intent = new Intent(Login.this, FragmentMainActivity.class);
                                 startActivity(intent);
                                 finish();
-                            }catch (Exception e){
+                            } catch (Exception e) {
                                 e.printStackTrace();
                             }
                         }

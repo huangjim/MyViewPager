@@ -75,6 +75,7 @@ public class PacketWashPopup extends PopupWindow {
                     bean.setAccount(j);
                 }
                 else {
+
                     BasketItemMsg basketItemMsg=new BasketItemMsg();
                     basketItemMsg.setAccount(num);
                     basketItemMsg.setPrice(99);

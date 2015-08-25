@@ -25,10 +25,6 @@ import jim.android.utils.BasketItemMsg;
  */
 public class FragmentMainActivity extends FragmentActivity implements ViewPager.OnPageChangeListener{
 
-    private FragmentBasket fragmentBasket;
-    private FragmentMy fragmentMy;
-    private FragmentMore fragmentMore;
-
     private LinearLayout buttonHome,buttonBasket,buttonMy,buttonMore;
     private ImageView imageHome,imageBasket,imageMy,imageMore;
     private TextView textHome,textBasket,textMy,textMore;
@@ -82,24 +78,16 @@ public class FragmentMainActivity extends FragmentActivity implements ViewPager.
 
         frameID=R.id.layout_frame_view;
 
-        FragmentHome fragmentHome = new FragmentHome();
-
-        fragmentBasket=new FragmentBasket();
         //basket=new Basket();
         has_basket=(ImageView) LayoutInflater.from(FragmentMainActivity.this).inflate(
                 R.layout.activity_fragment_basket,null).findViewById(R.id.iv_empty);
 
-
-        fragmentMy=new FragmentMy();
-
-        fragmentMore=new FragmentMore();
-
-        list=new ArrayList<Fragment>();
-        list.add(fragmentHome);
-        list.add(fragmentBasket);
+        list= new ArrayList<>();
+        list.add(new FragmentHome());
+        list.add(new FragmentBasket());
         //list.add(basket);
-        list.add(fragmentMy);
-        list.add(fragmentMore);
+        list.add(new FragmentMy());
+        list.add(new FragmentMore());
 
         viewPager=(ViewPager)findViewById(R.id.viewpager_main);
         viewPager.setAdapter(new MyPagerAdapter(getSupportFragmentManager(),list));
@@ -188,7 +176,11 @@ public class FragmentMainActivity extends FragmentActivity implements ViewPager.
 
     private void initBottomBtn(){
         imageHome.setImageResource(R.drawable.main_home_selector);
-        imageBasket.setImageResource(R.drawable.main_basket_selector);
+        if (basketList.size()>0){
+            imageBasket.setImageResource(R.drawable.icon_basket_nor_have);
+        }else {
+            imageBasket.setImageResource(R.drawable.main_basket_selector);
+        }
         imageMy.setImageResource(R.drawable.main_my_selector);
         imageMore.setImageResource(R.drawable.main_more_selector);
 
@@ -237,12 +229,5 @@ public class FragmentMainActivity extends FragmentActivity implements ViewPager.
         Log.i("MainActivity log", "onStop");
     }
 
-    @Override
-    public void onWindowFocusChanged(boolean hasFocus) {
-        super.onWindowFocusChanged(hasFocus);
-        if (hasFocus){
 
-            new BasketAdapter(basketList);
-        }
-    }
 }

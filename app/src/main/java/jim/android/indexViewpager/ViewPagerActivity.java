@@ -18,9 +18,6 @@ import jim.android.adapter.MyPagerAdapter;
 public class ViewPagerActivity extends FragmentActivity implements ViewPager.OnPageChangeListener {
 
 
-    private ViewPager viewPager;
-    private ArrayList<Fragment> listFragment;
-    private MyPagerAdapter adapter;
     private LinearLayout layout;
 
     @Override
@@ -31,9 +28,9 @@ public class ViewPagerActivity extends FragmentActivity implements ViewPager.OnP
     }
 
     private void initUI() {
-        listFragment = new ArrayList<Fragment>();
+        ArrayList<Fragment> listFragment = new ArrayList<>();
 
-        viewPager = (ViewPager) findViewById(R.id.my_viewPager);
+        ViewPager viewPager = (ViewPager) findViewById(R.id.my_viewPager);
 
         layout=(LinearLayout)findViewById(R.id.layout_index_container);
 
@@ -47,16 +44,13 @@ public class ViewPagerActivity extends FragmentActivity implements ViewPager.OnP
             layout.addView(index);
         }
 
-
         listFragment.add(new Fragment1());
         listFragment.add(new Fragment2());
         listFragment.add(new Fragment3());
+        //MyPagerAdapter adapter = new MyPagerAdapter(getSupportFragmentManager(), listFragment);
 
-        adapter = new MyPagerAdapter(getSupportFragmentManager(), listFragment);
-
-        viewPager.setAdapter(adapter);
+        viewPager.setAdapter(new MyPagerAdapter(getSupportFragmentManager(), listFragment));
         viewPager.setCurrentItem(0);
-
         viewPager.setOnPageChangeListener(this);
     }
 
@@ -72,7 +66,6 @@ public class ViewPagerActivity extends FragmentActivity implements ViewPager.OnP
         for (int i = 0; i <count ; i++) {
             layout.getChildAt(i).setSelected(i==position?true:false);
         }
-
     }
 
     @Override

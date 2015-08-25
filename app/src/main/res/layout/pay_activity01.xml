@@ -50,7 +50,7 @@
     <RelativeLayout
         android:id="@+id/pay01_relative"
         android:layout_width="@dimen/DIMEN_480PX"
-        android:layout_height="@dimen/DIMEN_350PX"
+        android:layout_height="@dimen/DIMEN_380PX"
         android:layout_below="@+id/linearLayout2"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="30dp"
@@ -81,6 +81,7 @@
                 android:layout_height="1dp"
                 android:background="@color/color_line"/>
             <LinearLayout
+                android:id="@+id/pay_password"
                 android:layout_gravity="center_horizontal"
                 android:layout_width="@dimen/DIMEN_434PX"
                 android:layout_height="40dp"
@@ -90,6 +91,10 @@
                     android:layout_height="match_parent"
                     android:background="@color/color_line"/>
                 <TextView
+                    android:id="@+id/password_box1"
+                    android:clickable="true"
+                    android:editable="true"
+                    android:inputType="numberPassword"
                     android:layout_width="@dimen/DIMEN_70PX"
                     android:layout_height="match_parent" />
                 <View
@@ -134,11 +139,12 @@
 
             </LinearLayout>
             <View
-                android:layout_width="@dimen/DIMEN_420PX"
+                android:layout_width="@dimen/DIMEN_434PX"
                 android:layout_height="1dp"
                 android:background="@color/color_line"/>
 
             <Button
+                android:id="@+id/surePay"
                 android:layout_marginTop="@dimen/DIMEN_70PX"
                 android:layout_width="@dimen/DIMEN_400PX"
                 android:layout_height="@dimen/DIMEN_80PX"
@@ -146,11 +152,7 @@
                 android:text="确认支付"
                 android:textSize="22sp"
                 android:textColor="@color/color_white"/>
-
-
-
         </LinearLayout>
-
     </RelativeLayout>
 
     <Button
