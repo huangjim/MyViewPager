@@ -13,7 +13,7 @@
         <RelativeLayout
             android:id="@+id/pay_title"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="40dp"
             android:background="@color/color_white">
 
             <ImageView
@@ -35,11 +35,13 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="40dp"
             android:layout_marginTop="10dp"
             android:orientation="horizontal">
 
             <Button
+                android:background="@color/color_ff735c"
+                android:textColor="@color/color_white"
                 android:id="@+id/pay_money_btn"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -47,6 +49,8 @@
                 android:text="@string/mony_text" />
 
             <Button
+                android:background="@color/color_white"
+                android:textColor="@color/color_black"
                 android:id="@+id/pay_epay_btn"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"

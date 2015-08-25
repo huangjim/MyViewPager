@@ -63,7 +63,6 @@ public class PieceWashMain extends FragmentActivity implements ViewPager.OnPageC
         viewPager.setCurrentItem(0);
 
 
-
     }
 
     @Override
