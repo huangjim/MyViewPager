@@ -179,7 +179,6 @@ public class BasketAdapter extends BaseAdapter {
         }
     }
 
-
     class ViewHolder {
         private ImageView imageView;
         private TextView clothesName;
@@ -190,6 +189,4 @@ public class BasketAdapter extends BaseAdapter {
         private TextView cut;
         private TextView add;
     }
-
-
 }
