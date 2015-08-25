@@ -18,6 +18,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import org.json.JSONArray;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -34,13 +36,14 @@ import jim.android.utils.PieceItemMsg;
 /**
  * Created by Jim Huang on 2015/8/3.
  */
-public class FragmentHome extends LazyFragment implements View.OnClickListener {
+public class Home extends LazyFragment implements View.OnClickListener {
 
     private View view;
     private ViewPager viewPager;
     private LinearLayout layout;
     private ImageView imageView[];
     private List<Bitmap> bitmapList = new ArrayList<>();
+    public static JSONArray Arraybanner = new JSONArray();
 
   /*  private int imageId[] = new int[]{
             R.drawable.frag_home_img03, R.drawable.frag_home_img04, R.drawable.frag_home_img05, R.drawable.frag_home_img03

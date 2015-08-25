@@ -1,5 +1,6 @@
 package jim.android.mainFrame;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -50,7 +51,7 @@ public class FragmentMy extends LazyFragment {
     private void initView() {
         gridView=(GridView)view.findViewById(R.id.frag_my_grid);
 
-        list=new ArrayList<Map<String, Object>>();
+        list= new ArrayList<>();
 
         for (int i=0;i<imageId.length;i++){
             Map<String,Object> map=new HashMap<String, Object>();
@@ -58,7 +59,7 @@ public class FragmentMy extends LazyFragment {
             map.put("info",strInfo[i]);
             list.add(map);
         }
-        adapter=new SimpleAdapter(getActivity(),(List<Map<String, Object>>)list,R.layout.activity_frag_my_griditem,new String[]{"image","info"},
+        adapter=new SimpleAdapter(getActivity(), list,R.layout.activity_frag_my_griditem,new String[]{"image","info"},
                 new int[]{R.id.frag_my_item_img,R.id.frag_my_item_text});
 
     }
@@ -80,43 +81,17 @@ public class FragmentMy extends LazyFragment {
                     case 2:
                         break;
                     case 3:
-                        Toast.makeText(getActivity(),"推荐码S19J6Q",Toast.LENGTH_LONG).show();
-                        showShare();
+                        Toast.makeText(getActivity(),"推荐码1be2",Toast.LENGTH_LONG).show();
+                        Intent intent=new Intent(getActivity(),ShareCode.class);
+                        startActivity(intent);
                         break;
                     case 4:
+                        Intent intent1=new Intent(getActivity(),ShareCodeCheck.class);
+                        startActivity(intent1);
                         break;
                 }
             }
         });
-
-    }
-    private void showShare() {
-        ShareSDK.initSDK(getActivity());
-        OnekeyShare oks = new OnekeyShare();
-        //关闭sso授权
-        oks.disableSSOWhenAuthorize();
-
-// 分享时Notification的图标和文字  2.5.9以后的版本不调用此方法
-        //oks.setNotification(R.drawable.ic_launcher, getString(R.string.app_name));
-        // title标题，印象笔记、邮箱、信息、微信、人人网和QQ空间使用
-        oks.setTitle(getString(R.string.share));
-        // titleUrl是标题的网络链接，仅在人人网和QQ空间使用
-        oks.setTitleUrl("http://sharesdk.cn");
-        // text是分享文本，所有平台都需要这个字段
-        oks.setText("我是分享文本");
-        // imagePath是图片的本地路径，Linked-In以外的平台都支持此参数
-        oks.setImagePath("/sdcard/test.jpg");//确保SDcard下面存在此张图片
-        // url仅在微信（包括好友和朋友圈）中使用
-        oks.setUrl("http://sharesdk.cn");
-        // comment是我对这条分享的评论，仅在人人网和QQ空间使用
-        oks.setComment("我是测试评论文本");
-        // site是分享此内容的网站名称，仅在QQ空间使用
-        oks.setSite(getString(R.string.app_name));
-        // siteUrl是分享此内容的网站地址，仅在QQ空间使用
-        oks.setSiteUrl("http://sharesdk.cn");
-
-// 启动分享GUI
-        oks.show(getActivity());
     }
 
     @Override

@@ -54,6 +54,12 @@
         <activity android:name="jim.android.pay.PayActivityMain">
 
         </activity>
+        <activity android:name="jim.android.mainFrame.ShareCode">
+
+        </activity>
+        <activity android:name="jim.android.mainFrame.ShareCodeCheck">
+
+        </activity>
         <activity
             android:name="com.mob.tools.MobUIShell"
             android:configChanges="keyboardHidden|orientation|screenSize"

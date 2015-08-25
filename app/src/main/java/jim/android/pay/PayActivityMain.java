@@ -39,6 +39,8 @@ public class PayActivityMain extends FragmentActivity implements ViewPager.OnPag
         viewPager=(ViewPager)findViewById(R.id.pay_viewpager);
 
         back.setOnClickListener(new BtnListener());
+        btnMoney.setOnClickListener(new BtnListener());
+        btnEpay.setOnClickListener(new BtnListener());
 
         list= new ArrayList<>();
         list.add(new PayFragment01());

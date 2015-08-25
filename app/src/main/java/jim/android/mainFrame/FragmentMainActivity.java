@@ -15,7 +15,6 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-import jim.android.adapter.BasketAdapter;
 import jim.android.adapter.MyPagerAdapter;
 import jim.android.indexViewpager.R;
 import jim.android.utils.BasketItemMsg;
@@ -83,7 +82,7 @@ public class FragmentMainActivity extends FragmentActivity implements ViewPager.
                 R.layout.activity_fragment_basket,null).findViewById(R.id.iv_empty);
 
         list= new ArrayList<>();
-        list.add(new FragmentHome());
+        list.add(new Home());
         list.add(new FragmentBasket());
         //list.add(basket);
         list.add(new FragmentMy());

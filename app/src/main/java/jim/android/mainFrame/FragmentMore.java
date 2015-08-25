@@ -1,7 +1,6 @@
 package jim.android.mainFrame;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,7 +25,7 @@ public class FragmentMore extends Fragment implements View.OnClickListener {
     }
 
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+    public void onActivityCreated( Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
         CustomViewForMore customViewForMore1 = (CustomViewForMore) view.findViewById(R.id.myitem01);
