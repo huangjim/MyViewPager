@@ -13,6 +13,10 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.Volley;
+
 import java.util.ArrayList;
 
 import jim.android.adapter.MyPagerAdapter;
@@ -30,6 +34,7 @@ public class FragmentMainActivity extends FragmentActivity implements ViewPager.
     private ViewPager viewPager;
     private ArrayList<Fragment> list;
     public static ArrayList<BasketItemMsg> basketList;
+    private static RequestQueue queue;
 
     public ImageView has_basket;
 
@@ -44,6 +49,7 @@ public class FragmentMainActivity extends FragmentActivity implements ViewPager.
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_cotent_main);
+        queue= Volley.newRequestQueue(this);
         initView();
         //setDefaultFragment();
 
@@ -226,6 +232,13 @@ public class FragmentMainActivity extends FragmentActivity implements ViewPager.
     protected void onStop() {
         super.onStop();
         Log.i("MainActivity log", "onStop");
+    }
+
+    public static Request startRequest(Request paramRequest,Object paramObject){
+        paramRequest.setTag(paramObject);
+        Request localRequest=queue.add(paramRequest);
+        queue.start();
+        return localRequest;
     }
 
 
