@@ -80,7 +80,7 @@ public class Home extends LazyFragment implements View.OnClickListener {
         view = inflater.inflate(R.layout.activity_fragment_home, container, false);
 
         initView();
-        
+
         ImageLoaderConfiguration configuration = ImageLoaderConfiguration
                 .createDefault(getActivity());
 
@@ -117,7 +117,7 @@ public class Home extends LazyFragment implements View.OnClickListener {
             try {
 
                 for (int i=0;i<imageUrls01.length;i++) {
-                    Log.i("imageUrls01",imageUrls01[i]);
+                    Log.i("imageUrls01",imageUrls01.length+"");
                     ImageLoader.getInstance().loadImage(imageUrls01[i], new ImageLoadingListener() {
                         @Override
                         public void onLoadingStarted(String s, View view) {
