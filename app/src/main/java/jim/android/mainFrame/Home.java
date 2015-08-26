@@ -7,7 +7,6 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Environment;
-import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.Gravity;
@@ -18,7 +17,18 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import com.android.volley.toolbox.StringRequest;
+import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+import com.nostra13.universalimageloader.core.assist.FailReason;
+import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
+import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
+
 import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -31,7 +41,6 @@ import jim.android.indexViewpager.R;
 import jim.android.pieceWash.PacketWashPopup;
 import jim.android.pieceWash.PieceWashMain;
 import jim.android.utils.BasketItemMsg;
-import jim.android.utils.PieceItemMsg;
 
 /**
  * Created by Jim Huang on 2015/8/3.
@@ -43,12 +52,17 @@ public class Home extends LazyFragment implements View.OnClickListener {
     private LinearLayout layout;
     private ImageView imageView[];
     private List<Bitmap> bitmapList = new ArrayList<>();
+    private List<ImageView> imageViewList=new ArrayList<>();
     public static JSONArray Arraybanner = new JSONArray();
+    private final String TAG = Home.class.getName();
+    private String[] imageUrls;
 
-  /*  private int imageId[] = new int[]{
-            R.drawable.frag_home_img03, R.drawable.frag_home_img04, R.drawable.frag_home_img05, R.drawable.frag_home_img03
-    };
-*/
+    private DisplayImageOptions options;
+
+    /*  private int imageId[] = new int[]{
+              R.drawable.frag_home_img03, R.drawable.frag_home_img04, R.drawable.frag_home_img05, R.drawable.frag_home_img03
+      };
+  */
     private boolean isPrepared;
 
     @Override
@@ -56,14 +70,71 @@ public class Home extends LazyFragment implements View.OnClickListener {
         //return super.onCreateView(inflater, container, savedInstanceState);
         view = inflater.inflate(R.layout.activity_fragment_home, container, false);
 
+        Banner();
+
+        options=new DisplayImageOptions.Builder()
+                .cacheInMemory(true)
+                .cacheOnDisk(true)
+                .bitmapConfig(Bitmap.Config.RGB_565)
+                .build();
+        ImageLoaderConfiguration configuration=new ImageLoaderConfiguration.Builder(getActivity())
+                .threadPriority(3)
+                .denyCacheImageMultipleSizesInMemory()
+                .diskCacheFileNameGenerator(new Md5FileNameGenerator())
+                .tasksProcessingOrder(QueueProcessingType.LIFO)
+                .writeDebugLogs()
+                .build();
+        ImageLoader.getInstance().init(configuration);
+
+        initViewPager();
         isPrepared = true;
+
 
 
         return view;
     }
 
-    private void initView() {
+    private void initViewPager(){
 
+        for (int i = 0; i < Arraybanner.length(); i++) {
+            try {
+                String str = ((JSONObject) Arraybanner.get(i)).getString("image");
+                imageUrls[i] = str;
+                ImageLoader.getInstance().loadImage(str, new ImageLoadingListener() {
+                    @Override
+                    public void onLoadingStarted(String s, View view) {
+                    }
+
+                    @Override
+                    public void onLoadingFailed(String s, View view, FailReason failReason) {
+                    }
+
+                    @Override
+                    public void onLoadingComplete(String s, View view, Bitmap bitmap) {
+                        bitmapList.add(bitmap);
+                    }
+
+                    @Override
+                    public void onLoadingCancelled(String s, View view) {
+
+                    }
+                });
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+
+
+
+    }
+
+
+    private void Banner() {
+        FragmentMainActivity.startRequest(new StringRequest("http://123.56.138.192:8002/banners/",
+                new Home01(), new Home02()), this.TAG);
+    }
+
+    private void initView() {
 
         Button pieceWashBtn = (Button) view.findViewById(R.id.frag_home_btn01);
         Button packetWashBtn = (Button) view.findViewById(R.id.frag_home_btn02);
@@ -72,6 +143,7 @@ public class Home extends LazyFragment implements View.OnClickListener {
         pieceWashBtn.setOnClickListener(this);
         packetWashBtn.setOnClickListener(this);
 
+
     }
 
     @Override
@@ -79,14 +151,15 @@ public class Home extends LazyFragment implements View.OnClickListener {
         super.onActivityCreated(savedInstanceState);
 
         initView();
+
         //lazyLoad();
-        if (bitmapList.size()==0||bitmapList.isEmpty()){
-            readImage();
+        if (bitmapList.size() == 0 || bitmapList.isEmpty()) {
+            //readImage();
             imageView = new ImageView[bitmapList.size()];
         }
 
         for (int i = 0; i < bitmapList.size(); i++) {
-            ImageView image= new ImageView(getActivity());
+            ImageView image = new ImageView(getActivity());
             image.setImageBitmap(bitmapList.get(i));
             image.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
             imageView[i] = image;
@@ -100,6 +173,7 @@ public class Home extends LazyFragment implements View.OnClickListener {
             image.setSelected(0 == i ? true : false);
             layout.addView(image);
         }
+
 
         viewPager.setAdapter(new MyPAdapter(imageView));
         viewPager.setCurrentItem(0);
@@ -141,7 +215,7 @@ public class Home extends LazyFragment implements View.OnClickListener {
                 startActivity(intent);
                 break;
             case R.id.frag_home_btn02:
-                Iterator iterator = FragmentMainActivity.basketList.iterator();
+                Iterator<BasketItemMsg> iterator = FragmentMainActivity.basketList.iterator();
                 Object localObject = null;
                 boolean bool = false;
                 while (true) {
@@ -158,7 +232,7 @@ public class Home extends LazyFragment implements View.OnClickListener {
                         popup.showAtLocation(view, Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, 0);
                         break;
                     }
-                    BasketItemMsg b = (BasketItemMsg) iterator.next();
+                    BasketItemMsg b = iterator.next();
                     if (!b.getClothesName().equals("袋洗"))
                         continue;
                     bool = true;
