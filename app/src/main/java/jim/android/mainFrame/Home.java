@@ -101,9 +101,37 @@ public class Home extends LazyFragment implements View.OnClickListener {
         ImageLoader.getInstance().init(configuration);*/
 
         Banner();
+        initViewPager();
 
 
         isPrepared = true;
+
+        imageView = new ImageView[bitmapList.size()];
+        Log.i("bitmapList.size()=",bitmapList.size()+"");
+
+
+        if (layout.getChildCount()<bitmapList.size()){
+            for (int i = 0; i < bitmapList.size(); i++) {
+                ImageView image = new ImageView(getActivity());
+                image.setImageBitmap(bitmapList.get(i));
+                image.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+                imageView[i] = image;
+            }
+
+            for (int i = 0; i < bitmapList.size(); i++) {
+                ImageView image = new ImageView(getActivity());
+                image.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+                image.setPadding(8, 8, 8, 8);
+                image.setImageResource(R.drawable.circle_selector);
+                image.setSelected(0 == i ? true : false);
+                layout.addView(image);
+            }
+        }
+
+
+        viewPager.setAdapter(new MyPAdapter(imageView));
+        viewPager.setCurrentItem(0);
+        viewPager.setOnPageChangeListener(new MyPChangeAdapter(layout));
 
 
 
@@ -129,6 +157,7 @@ public class Home extends LazyFragment implements View.OnClickListener {
 
                         @Override
                         public void onLoadingComplete(String s, View view, Bitmap bitmap) {
+
 
                             bitmapList.add(bitmap);
                         }
@@ -192,7 +221,7 @@ public class Home extends LazyFragment implements View.OnClickListener {
             }
         });
         queue.add(localStringRequest);
-        initViewPager();
+
 
     }
 
@@ -222,28 +251,7 @@ public class Home extends LazyFragment implements View.OnClickListener {
             Log.i("bitmapList.size()=",bitmapList.size()+"");
         }*/
 
-        imageView = new ImageView[bitmapList.size()];
-        Log.i("bitmapList.size()=",bitmapList.size()+"");
-        for (int i = 0; i < bitmapList.size(); i++) {
-            ImageView image = new ImageView(getActivity());
-            image.setImageBitmap(bitmapList.get(i));
-            image.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
-            imageView[i] = image;
-        }
 
-        for (int i = 0; i < bitmapList.size(); i++) {
-            ImageView image = new ImageView(getActivity());
-            image.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-            image.setPadding(8, 8, 8, 8);
-            image.setImageResource(R.drawable.circle_selector);
-            image.setSelected(0 == i ? true : false);
-            layout.addView(image);
-        }
-
-
-        viewPager.setAdapter(new MyPAdapter(imageView));
-        viewPager.setCurrentItem(0);
-        viewPager.setOnPageChangeListener(new MyPChangeAdapter(layout));
 
     }
 
