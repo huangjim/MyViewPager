@@ -23,7 +23,7 @@ import java.util.List;
 
 import jim.android.adapter.BasketAdapter;
 import jim.android.adapter.MyPieceGridAdapter;
-import jim.android.indexViewpager.R;
+import jim.android.Splash.R;
 import jim.android.mainFrame.FragmentMainActivity;
 import jim.android.utils.BasketItemMsg;
 import jim.android.utils.PieceItemMsg;

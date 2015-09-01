@@ -1,4 +1,4 @@
-package jim.android.indexViewpager;
+package jim.android.Splash;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

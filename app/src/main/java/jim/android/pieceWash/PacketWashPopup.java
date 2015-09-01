@@ -1,25 +1,22 @@
 package jim.android.pieceWash;
 
-import android.content.Context;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
-import java.io.Flushable;
-
-import jim.android.adapter.BasketAdapter;
-import jim.android.indexViewpager.R;
+import jim.android.Splash.R;
 import jim.android.mainFrame.FragmentMainActivity;
 import jim.android.utils.BasketItemMsg;
-import jim.android.utils.PieceItemMsg;
 
 /**
  * Created by Jim Huang on 2015/8/23.
  */
 public class PacketWashPopup extends PopupWindow {
 
-    private Context context;
     private View view;
     private Button btnPay;
     private TextView cut;
@@ -29,12 +26,18 @@ public class PacketWashPopup extends PopupWindow {
     private boolean bool;
     private int strCut=1;
 
-    public PacketWashPopup(Context context,View view,boolean bool,BasketItemMsg basketItemMsg){
+    public PacketWashPopup(View view,boolean bool,BasketItemMsg basketItemMsg){
 
-        this.context=context;
         this.view=view;
         this.bool=bool;
         this.bean=basketItemMsg;
+        setContentView(view);
+        setWindowLayoutMode(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+        setFocusable(true);
+        ColorDrawable drawable = new ColorDrawable(Color.parseColor("#58000000"));
+        setBackgroundDrawable(drawable);
+        setOutsideTouchable(true);
+        setAnimationStyle(R.style.PopupAnimation);
         initView();
     }
 

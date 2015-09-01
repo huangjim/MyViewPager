@@ -1,4 +1,4 @@
-package jim.android.indexViewpager;
+package jim.android.Splash;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,7 +13,7 @@ import android.widget.Button;
 /**
  * Created by Administrator on 2015/7/25.
  */
-public class Fragment3 extends Fragment {
+public class Splash03 extends Fragment {
 
     private View view;
     @Override
@@ -35,7 +35,7 @@ public class Fragment3 extends Fragment {
                 startActivity(intent);
                 getActivity().finish();
                 Log.i("Jim Log", "开始体验");
-                //Toast.makeText(Fragment3.this,"ni",Toast.LENGTH_SHORT).show();
+                //Toast.makeText(Splash03.this,"ni",Toast.LENGTH_SHORT).show();
             }
         });
     }

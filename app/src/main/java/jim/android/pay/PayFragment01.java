@@ -11,7 +11,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import jim.android.indexViewpager.R;
+import jim.android.Splash.R;
 
 /**
  * Created by Jim Huang on 2015/8/21.

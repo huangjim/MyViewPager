@@ -1,13 +1,12 @@
 package jim.android.pay;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import jim.android.indexViewpager.R;
+import jim.android.Splash.R;
 
 /**
  * Created by Jim Huang on 2015/8/21.

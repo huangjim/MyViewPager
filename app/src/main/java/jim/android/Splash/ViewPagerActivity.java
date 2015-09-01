@@ -1,4 +1,4 @@
-package jim.android.indexViewpager;
+package jim.android.Splash;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -44,9 +44,9 @@ public class ViewPagerActivity extends FragmentActivity implements ViewPager.OnP
             layout.addView(index);
         }
 
-        listFragment.add(new Fragment1());
-        listFragment.add(new Fragment2());
-        listFragment.add(new Fragment3());
+        listFragment.add(new Splash01());
+        listFragment.add(new Splash02());
+        listFragment.add(new Splash03());
         //MyPagerAdapter adapter = new MyPagerAdapter(getSupportFragmentManager(), listFragment);
 
         viewPager.setAdapter(new MyPagerAdapter(getSupportFragmentManager(), listFragment));

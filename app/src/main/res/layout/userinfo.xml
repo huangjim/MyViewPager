@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:id="@+id/layout"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@color/color_white">
+
+        <ImageView
+            android:id="@+id/userinfo_back"
+            android:layout_width="15dp"
+            android:layout_height="25dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:src="@drawable/back" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="用户信息"
+            android:textSize="22sp" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+
+        android:layout_marginTop="15dp"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:orientation="horizontal"
+        >
+
+        <ImageView
+            android:background="@color/color_white"
+            android:layout_gravity="center"
+            android:padding="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:src="@drawable/image_name"/>
+        <EditText
+            android:id="@+id/userinfo_name"
+            android:hint="请输入姓氏"
+            android:lines="1"
+            android:textSize="16sp"
+            android:maxLength="15"
+            android:background="@color/color_white"
+            android:paddingLeft="10dp"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            />
+
+        <RadioGroup
+            android:id="@+id/select_sex"
+            android:layout_marginLeft="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:checkedButton="@+id/male">
+            <RadioButton
+                android:id="@+id/male"
+                android:text="先生"
+                android:button="@null"
+                android:background="@drawable/sex_select"
+                android:layout_width="55dp"
+                android:layout_height="match_parent"
+                android:textSize="16sp"
+                android:textColor="@color/color_white"
+                android:gravity="center"/>
+            <RadioButton
+                android:id="@+id/lady"
+                android:text="女士"
+                android:button="@null"
+                android:background="@drawable/sex_select"
+                android:layout_marginLeft="5dp"
+                android:layout_width="55dp"
+                android:layout_height="match_parent"
+                android:textSize="16sp"
+                android:gravity="center"/>
+        </RadioGroup>
+
+        
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="40dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="20dp"
+        >
+        <ImageView
+            android:background="@color/color_white"
+            android:layout_gravity="center"
+            android:padding="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:src="@drawable/image_phone"/>
+        <EditText
+            android:id="@+id/userinfo_phone"
+            android:hint="请输入手机号"
+            android:lines="1"
+            android:background="@color/color_white"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:maxLength="13"
+            android:textSize="16sp"
+            android:inputType="phone" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="horizontal">
+        <ImageView
+            android:layout_gravity="center"
+            android:padding="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:src="@drawable/image_location"/>
+        <TextView
+
+            android:textSize="16sp"
+            android:gravity="center_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="收货地址"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+
+        android:background="@color/color_white"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="40dp">
+        <TextView
+            android:textSize="15sp"
+            android:paddingLeft="8dp"
+            android:gravity="center_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="区域:"/>
+        <TextView
+            android:id="@+id/userinfo_district"
+            android:textSize="16sp"
+            android:layout_marginLeft="10dp"
+            android:gravity="center_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="锦江区"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginTop="20dp"
+
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="40dp">
+        <TextView
+            android:background="@color/color_white"
+            android:textSize="15sp"
+            android:paddingLeft="8dp"
+            android:gravity="center_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="详细地址:"/>
+        <EditText
+            android:id="@+id/userinfo_address"
+            android:lines="1"
+            android:background="@color/color_white"
+            android:textSize="16sp"
+            android:paddingLeft="10dp"
+            android:gravity="center_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="南大街"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:textSize="15sp"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="请精准填写您所在的街道、小区、栋、单元、号"/>
+    <Button
+        android:id="@+id/userinfo_save"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="40dp"
+        android:textColor="@color/color_white"
+        android:textSize="16sp"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@drawable/save_userinfo"
+        android:text="保存"/>
+
+
+</LinearLayout>

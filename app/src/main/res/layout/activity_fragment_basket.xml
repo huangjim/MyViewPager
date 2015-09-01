@@ -3,7 +3,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/color_gray">
+    >
 
     <RelativeLayout
         android:id="@+id/basket_layout_title"
@@ -53,9 +53,14 @@
                 android:layout_height="match_parent"
                 android:layout_above="@+id/linearLayout"
                 android:layout_marginTop="5dp"
-                android:background="@color/color_white">
+                android:background="@color/color_gray">
 
             </ListView>
+           <!-- <View
+                android:layout_below="@+id/basket_list"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/color_gray"/>-->
 
             <LinearLayout
                 android:id="@+id/linearLayout"
@@ -83,7 +88,7 @@
 
                 <TextView
                     android:id="@+id/price_pay"
-                    android:layout_width="wrap_content"
+                    android:layout_width="60dp"
                     android:layout_height="wrap_content"
                     android:text="30"
                     android:textColor="@color/color_origin"
@@ -91,9 +96,9 @@
 
                 <Button
                     android:id="@+id/btnpay"
-                    android:layout_width="@dimen/DIMEN_200PX"
+                    android:layout_width="@dimen/DIMEN_150PX"
                     android:layout_height="@dimen/DIMEN_60PX"
-                    android:layout_marginLeft="@dimen/DIMEN_200PX"
+                    android:layout_marginLeft="@dimen/DIMEN_100PX"
                     android:background="@color/color_blue"
                     android:text="立即支付"
                     android:textColor="@color/color_white" />

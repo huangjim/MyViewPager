@@ -7,7 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import jim.android.indexViewpager.R;
+import jim.android.Splash.R;
 
 /**
  * Created by Jim Huang on 2015/8/9.

@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import jim.android.indexViewpager.R;
+import jim.android.Splash.R;
 import jim.android.utils.PieceItemMsg;
 
 /**

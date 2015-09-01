@@ -7,20 +7,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import jim.android.indexViewpager.R;
-import jim.android.mainFrame.FragmentBasket;
-import jim.android.mainFrame.FragmentMainActivity;
-import jim.android.mainFrame.LazyFragment;
-import jim.android.pay.PayActivityMain;
+import jim.android.Splash.R;
+import jim.android.mainFrame.BasketQuan;
+import jim.android.mainFrame.UserInfo;
 import jim.android.utils.BasketItemMsg;
 
 /**
@@ -159,11 +156,30 @@ public class BasketAdapter extends BaseAdapter {
                     holder = new ViewHolder();
                     convertView = LayoutInflater.from(context).inflate(R.layout.activity_frag_basket_buttomitem, null);
                     holder.allPrice = (TextView) convertView.findViewById(R.id.allprice);
+                    holder.quan=(RelativeLayout)convertView.findViewById(R.id.frag_basket_quan);
+                    holder.wirteLocation=(RelativeLayout)convertView.findViewById(R.id.write_location1);
                     convertView.setTag(holder);
                 }
                 holder = (ViewHolder) convertView.getTag();
                 holder.allPrice.setText(getTotalPrice() + "");
                 displayPrice.setText(getTotalPrice() + "");
+                holder.quan.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(context, BasketQuan.class);
+
+                        context.startActivity(intent);
+                    }
+                });
+
+                holder.wirteLocation.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent=new Intent(context, UserInfo.class);
+
+                        context.startActivity(intent);
+                    }
+                });
                 break;
         }
 
@@ -189,5 +205,7 @@ public class BasketAdapter extends BaseAdapter {
         private ImageView del;
         private TextView cut;
         private TextView add;
+        private RelativeLayout quan;
+        private RelativeLayout wirteLocation;
     }
 }

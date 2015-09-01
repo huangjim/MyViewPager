@@ -2,8 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/DIMEN_40PX"
-    android:background="@color/color_gray">
+    >
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -11,7 +10,7 @@
         android:background="#ffffff"
         android:layout_marginTop="1dp"
         android:gravity="center_vertical"
-        android:layout_marginBottom="10dp">
+        >
 
 
         <TextView
@@ -47,14 +46,17 @@
 
         </TextView>
     </RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:background="@color/color_gray"/>
 
     <FrameLayout
-        android:layout_marginTop="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="1dp">
         <ImageView
-            android:visibility="invisible"
+            android:visibility="gone"
             android:id="@+id/frag_basket_img01"
             android:layout_width="match_parent"
             android:layout_height="70dp"
@@ -62,6 +64,8 @@
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp">
         </ImageView>
+
+
         <RelativeLayout
             android:id="@+id/frag_basket_quan"
             android:layout_width="match_parent"
@@ -85,7 +89,12 @@
                 android:drawablePadding="10dp"/>
 
         </RelativeLayout>
+
     </FrameLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/color_gray"/>
 
     <!--<RelativeLayout
         android:layout_width="match_parent"
@@ -132,12 +141,13 @@
 
         />-->
     <FrameLayout
-        android:background="@color/color_white"
+
+        android:layout_marginTop="2dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <RelativeLayout
-            android:visibility="invisible"
-            android:id="@+id/frag_basket_userinfo"
+            android:visibility="visible"
+            android:id="@+id/write_location1"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:background="#ffffff"
@@ -147,7 +157,7 @@
                 android:layout_height="wrap_content"
                 android:text="用户信息"
                 android:textSize="20sp"
-                android:layout_marginLeft="20dp"/>
+                android:layout_marginLeft="@dimen/DIMEN_20PX"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -160,6 +170,8 @@
 
         </RelativeLayout>
         <RelativeLayout
+            android:visibility="gone"
+            android:background="@color/color_white"
             android:id="@+id/have_location"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

@@ -1,12 +1,10 @@
-package jim.android.indexViewpager;
+package jim.android.Splash;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.widget.ImageView;
-
-import java.util.Timer;
 
 /**
  * Created by Jim Huang on 2015/8/2.

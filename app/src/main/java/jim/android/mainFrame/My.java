@@ -1,14 +1,16 @@
 package jim.android.mainFrame;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.SimpleAdapter;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -16,14 +18,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import cn.sharesdk.framework.ShareSDK;
-import cn.sharesdk.onekeyshare.OnekeyShare;
-import jim.android.indexViewpager.R;
+import jim.android.Splash.R;
 
 /**
  * Created by Jim Huang on 2015/8/4.
  */
-public class FragmentMy extends LazyFragment {
+public class My extends LazyFragment {
 
     private View view;
     private int imageId[]=new int[]{
@@ -36,6 +36,9 @@ public class FragmentMy extends LazyFragment {
     };
 
     private GridView gridView;
+    private TextView textName;
+    private TextView textPhone;
+    private SharedPreferences preferences;
 
     private List<Map<String,Object>> list;
     private SimpleAdapter adapter=null;
@@ -45,16 +48,22 @@ public class FragmentMy extends LazyFragment {
 
         view=inflater.inflate(R.layout.activity_fragment_my,container,false);
 
+        initView();
+
         return view;
 
     }
     private void initView() {
         gridView=(GridView)view.findViewById(R.id.frag_my_grid);
-
+        textName=(TextView)view.findViewById(R.id.frag_my_name);
+        textPhone=(TextView)view.findViewById(R.id.frag_my_phone);
+        preferences=getActivity().getSharedPreferences("userinfo", Context.MODE_PRIVATE);
         list= new ArrayList<>();
 
+
+
         for (int i=0;i<imageId.length;i++){
-            Map<String,Object> map=new HashMap<String, Object>();
+            Map<String,Object> map= new HashMap<>();
             map.put("image",imageId[i]);
             map.put("info",strInfo[i]);
             list.add(map);
@@ -67,7 +76,7 @@ public class FragmentMy extends LazyFragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        initView();
+
 
         gridView.setAdapter(adapter);
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -95,7 +104,22 @@ public class FragmentMy extends LazyFragment {
     }
 
     @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if (isVisibleToUser){
+            //textPhone.setText("");
+            //textName.setText("");
+            if (preferences.getInt("sex01",-1)==1)
+                textName.setText(preferences.getString("name","")+"先生");
+            else if (preferences.getInt("sex01",-1)==0)
+                textName.setText(preferences.getString("name","")+"女士");
+            textPhone.setText(preferences.getString("phone",""));
+        }
+    }
+
+    @Override
     protected void lazyLoad() {
+
 
     }
 }

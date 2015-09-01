@@ -8,7 +8,7 @@ import android.widget.ImageButton;
 
 import cn.sharesdk.framework.ShareSDK;
 import cn.sharesdk.onekeyshare.OnekeyShare;
-import jim.android.indexViewpager.R;
+import jim.android.Splash.R;
 
 /**
  * Created by Jim Huang on 2015/8/25.

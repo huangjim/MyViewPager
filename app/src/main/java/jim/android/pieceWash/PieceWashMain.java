@@ -1,6 +1,5 @@
 package jim.android.pieceWash;
 
-import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -13,8 +12,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 import jim.android.adapter.MyPagerAdapter;
-import jim.android.indexViewpager.R;
-import jim.android.mainFrame.FragmentMainActivity;
+import jim.android.Splash.R;
 
 /**
  * Created by Jim Huang on 2015/8/9.

@@ -3,7 +3,6 @@ package jim.android.mainFrame;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,14 +15,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import jim.android.adapter.BasketAdapter;
-import jim.android.indexViewpager.R;
+import jim.android.Splash.R;
 import jim.android.pay.PayActivityMain;
 import jim.android.utils.BasketItemMsg;
 
 /**
  * Created by Jim Huang on 2015/8/3.
  */
-public class FragmentBasket extends LazyFragment implements View.OnClickListener{
+public class Basket extends LazyFragment implements View.OnClickListener{
 
     /*private int imageId[]=new int[]{R.drawable.basket_list_item_img01,R.drawable.basket_list_item_img02,R.drawable.basket_list_item_img03};
     private String clothesName[]=new String[]{"衬衫","短风衣","T恤"};
@@ -36,14 +35,19 @@ public class FragmentBasket extends LazyFragment implements View.OnClickListener
     private BasketAdapter adapter;
     private TextView displayPrice;
     private boolean isPrepared;
+    private TextView pay;
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        Log.i("FragmentBasket log", "onCreateView");
+        Log.i("Basket log", "onCreateView");
         view=inflater.inflate(R.layout.activity_fragment_basket,container,false);
+
+        initView();
+
         isPrepared=true;
         lazyLoad();
+
 
         return view;
     }
@@ -52,7 +56,7 @@ public class FragmentBasket extends LazyFragment implements View.OnClickListener
         myListView = (ListView) view.findViewById(R.id.basket_list);
         listMsg = new ArrayList<>();
         ivEmpty = (ImageView) view.findViewById(R.id.iv_empty);
-        TextView pay = (TextView) view.findViewById(R.id.btnpay);
+        pay = (TextView) view.findViewById(R.id.btnpay);
         TextView deleteAll = (TextView) view.findViewById(R.id.deleteAll);
         displayPrice=(TextView)view.findViewById(R.id.price_pay);
 
@@ -73,15 +77,15 @@ public class FragmentBasket extends LazyFragment implements View.OnClickListener
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        Log.i("FragmentBasket log", "onActivityCreated");
 
+        Log.i("Basket log", "onActivityCreated");
 
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        Log.i("FragmentBasket log", "onResume");
+        Log.i("Basket log", "onResume");
 
 
     }
@@ -107,64 +111,71 @@ public class FragmentBasket extends LazyFragment implements View.OnClickListener
     @Override
     public void onPause() {
         super.onPause();
-        Log.i("FragmentBasket log", "onPause");
+        Log.i("Basket log", "onPause");
     }
 
     @Override
     public void onStop() {
         super.onStop();
-        Log.i("FragmentBasket log", "onStop");
+        Log.i("Basket log", "onStop");
     }
 
     @Override
     public void onStart() {
         super.onStart();
-        Log.i("FragmentBasket log", "onStart");
+        Log.i("Basket log", "onStart");
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        Log.i("FragmentBasket log", "onDestroy");
+        Log.i("Basket log", "onDestroy");
     }
 
     @Override
     public void onDetach() {
         super.onDetach();
-        Log.i("FragmentBasket log", "onDetach");
+        Log.i("Basket log", "onDetach");
     }
 
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
-        Log.i("FragmentBasket log", "onAttach");
+        Log.i("Basket log", "onAttach");
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.i("FragmentBasket log", "onCreate");
+        Log.i("Basket log", "onCreate");
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        Log.i("FragmentBasket log", "onDestroyView");
+        Log.i("Basket log", "onDestroyView");
+    }
+
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+
     }
 
     @Override
     protected void lazyLoad() {
         if (!isPrepared||!isVisible)
             return;
-        initView();
-
         Log.i("Jim log","Basket can be excutee?");
         adapter=new BasketAdapter(FragmentMainActivity.basketList, getActivity(),ivEmpty,displayPrice);
         myListView.setAdapter(adapter);
         if (FragmentMainActivity.basketList.size()==0){
             ivEmpty.setVisibility(View.VISIBLE);
+            pay.setClickable(false);
         } else {
-            ivEmpty.setVisibility(View.INVISIBLE);
+            ivEmpty.setVisibility(View.GONE);
+            pay.setClickable(true);
         }
+
     }
 }

@@ -20,7 +20,7 @@ import com.android.volley.toolbox.Volley;
 import java.util.ArrayList;
 
 import jim.android.adapter.MyPagerAdapter;
-import jim.android.indexViewpager.R;
+import jim.android.Splash.R;
 import jim.android.utils.BasketItemMsg;
 
 /**
@@ -43,6 +43,9 @@ public class FragmentMainActivity extends FragmentActivity implements ViewPager.
     static {
         basketList=new ArrayList<>();
     }
+
+    
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Log.i("MainActivity log","onCreate");
@@ -89,9 +92,9 @@ public class FragmentMainActivity extends FragmentActivity implements ViewPager.
 
         list= new ArrayList<>();
         list.add(new Home());
-        list.add(new FragmentBasket());
+        list.add(new Basket());
         //list.add(basket);
-        list.add(new FragmentMy());
+        list.add(new My());
         list.add(new FragmentMore());
 
         viewPager=(ViewPager)findViewById(R.id.viewpager_main);
@@ -234,12 +237,11 @@ public class FragmentMainActivity extends FragmentActivity implements ViewPager.
         Log.i("MainActivity log", "onStop");
     }
 
-    public static Request startRequest(Request paramRequest,Object paramObject){
+    public static <T> Request<T> startRequest(Request paramRequest,Object paramObject){
         paramRequest.setTag(paramObject);
         Request localRequest=queue.add(paramRequest);
         queue.start();
         return localRequest;
     }
-
 
 }

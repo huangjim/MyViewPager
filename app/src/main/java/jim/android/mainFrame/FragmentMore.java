@@ -6,7 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
-import jim.android.indexViewpager.R;
+import jim.android.Splash.R;
 
 /**
  * Created by huangjim on 8/14/2015.

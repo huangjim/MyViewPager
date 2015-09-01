@@ -7,7 +7,7 @@ import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
-import jim.android.indexViewpager.R;
+import jim.android.Splash.R;
 import jim.android.mainFrame.FragmentMainActivity;
 import jim.android.utils.BasketItemMsg;
 import jim.android.utils.PieceItemMsg;

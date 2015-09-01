@@ -10,7 +10,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import jim.android.indexViewpager.R;
+import jim.android.Splash.R;
 
 /**
  * Created by Administrator on 2015/7/24.

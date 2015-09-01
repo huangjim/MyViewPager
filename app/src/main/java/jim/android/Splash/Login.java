@@ -1,4 +1,4 @@
-package jim.android.indexViewpager;
+package jim.android.Splash;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -20,7 +20,7 @@ import jim.android.mainFrame.FragmentMainActivity;
 /**
  * Created by Jim Huang on 2015/7/26.
  */
-public class Login extends Activity {
+public class Login extends Activity{
 
     private Button getCodeButton;
     private Boolean flag=false;
@@ -47,25 +47,7 @@ public class Login extends Activity {
         String LOCAL_PASSWORD = "pass";
         SharedPreferences sharedPre = getSharedPreferences(LOCAL_PASSWORD, MODE_PRIVATE);
         editor= sharedPre.edit();
-       /* registButton.setClickable(false);
-        registButton.setBackgroundColor(Color.parseColor("#bcbdc3"));
 
-
-        textPhone.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if (hasFocus){
-
-                    if (!(textPhone.getText().toString().isEmpty())){
-                        registButton.setClickable(true);
-                        registButton.setBackgroundColor(Color.parseColor("#28ccfc"));
-                    }
-                }else {
-                    registButton.setClickable(false);
-                    registButton.setBackgroundColor(Color.parseColor("#bcbdc3"));
-                }
-            }
-        });*/
         getCodeButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -122,6 +104,7 @@ public class Login extends Activity {
         //return m.find();
         return true;
     }
+
 
     class CountTime extends CountDownTimer{
 
