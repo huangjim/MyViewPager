@@ -17,6 +17,7 @@ import java.util.List;
 
 import jim.android.Splash.R;
 import jim.android.mainFrame.BasketQuan;
+import jim.android.mainFrame.MyApplication;
 import jim.android.mainFrame.UserInfo;
 import jim.android.utils.BasketItemMsg;
 
@@ -32,6 +33,8 @@ public class BasketAdapter extends BaseAdapter {
     private Context context;
     private ImageView ivEmpty;
     private TextView displayPrice;
+    private MyApplication application=MyApplication.getInstance();
+    private boolean flag=false;
 
 
     public BasketAdapter(List<BasketItemMsg> list, Context context, ImageView ivEmpty, TextView displayPrice) {
@@ -157,7 +160,21 @@ public class BasketAdapter extends BaseAdapter {
                     convertView = LayoutInflater.from(context).inflate(R.layout.activity_frag_basket_buttomitem, null);
                     holder.allPrice = (TextView) convertView.findViewById(R.id.allprice);
                     holder.quan=(RelativeLayout)convertView.findViewById(R.id.frag_basket_quan);
-                    holder.wirteLocation=(RelativeLayout)convertView.findViewById(R.id.write_location1);
+                    if (application.getPreferences()!=null){
+                        flag=true;
+                        holder.wirteLocation=(RelativeLayout)convertView.findViewById(R.id.write_location1);
+                        holder.wirteLocation.setVisibility(View.GONE);
+                        holder.haveLocation=(RelativeLayout)convertView.findViewById(R.id.have_location);
+                        holder.haveLocation.setVisibility(View.VISIBLE);
+                        holder.userName=(TextView)convertView.findViewById(R.id.userinfo_name);
+                        holder.userPhone=(TextView)convertView.findViewById(R.id.userinfo_phone);
+                        holder.userAddress=(TextView)convertView.findViewById(R.id.userinfo_address);
+
+                    }else {
+
+                        holder.wirteLocation=(RelativeLayout)convertView.findViewById(R.id.write_location1);
+                    }
+
                     convertView.setTag(holder);
                 }
                 holder = (ViewHolder) convertView.getTag();
@@ -172,14 +189,33 @@ public class BasketAdapter extends BaseAdapter {
                     }
                 });
 
-                holder.wirteLocation.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent intent=new Intent(context, UserInfo.class);
+                if (flag){
+                    if (application.getPreferences().getInt("sex01",-1)==0)
+                        holder.userName.setText(application.getPreferences().getString("name","")+"女士");
+                    else if (application.getPreferences().getInt("sex01",-1)==1)
+                        holder.userName.setText(application.getPreferences().getString("name","")+"先生");
+                    holder.userPhone.setText(application.getPreferences().getString("phone", ""));
+                    holder.userAddress.setText(application.getPreferences().getString("address",""));
+                    holder.haveLocation.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent intent=new Intent(context, UserInfo.class);
 
-                        context.startActivity(intent);
-                    }
-                });
+                            context.startActivity(intent);
+                        }
+                    });
+
+                }else {
+                    holder.wirteLocation.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent intent=new Intent(context, UserInfo.class);
+
+                            context.startActivity(intent);
+                        }
+                    });
+                }
+
                 break;
         }
 
@@ -207,5 +243,10 @@ public class BasketAdapter extends BaseAdapter {
         private TextView add;
         private RelativeLayout quan;
         private RelativeLayout wirteLocation;
+        private RelativeLayout haveLocation;
+        private TextView userName;
+        private TextView userPhone;
+        private TextView userAddress;
+
     }
 }

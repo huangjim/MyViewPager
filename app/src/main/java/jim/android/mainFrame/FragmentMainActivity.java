@@ -4,6 +4,8 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -16,6 +18,7 @@ import android.widget.TextView;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
+import com.lidroid.xutils.ViewUtils;
 
 import java.util.ArrayList;
 
@@ -26,7 +29,7 @@ import jim.android.utils.BasketItemMsg;
 /**
  * Created by Jim Huang on 2015/8/3.
  */
-public class FragmentMainActivity extends FragmentActivity implements ViewPager.OnPageChangeListener{
+public class FragmentMainActivity extends FragmentActivity {
 
     private LinearLayout buttonHome,buttonBasket,buttonMy,buttonMore;
     private ImageView imageHome,imageBasket,imageMy,imageMore;
@@ -35,6 +38,7 @@ public class FragmentMainActivity extends FragmentActivity implements ViewPager.
     private ArrayList<Fragment> list;
     public static ArrayList<BasketItemMsg> basketList;
     private static RequestQueue queue;
+    private Fragment fragmentHome,fragmentBasket,fragmentMy,fragmentMore;
 
     public ImageView has_basket;
 
@@ -44,18 +48,17 @@ public class FragmentMainActivity extends FragmentActivity implements ViewPager.
         basketList=new ArrayList<>();
     }
 
-    
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Log.i("MainActivity log","onCreate");
+        Log.i("MainActivity log", "onCreate");
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_cotent_main);
         queue= Volley.newRequestQueue(this);
-        initView();
-        //setDefaultFragment();
-
+        if (savedInstanceState==null){
+            initView();
+        }
+        setDefaultFragment();
     }
 
     private void initView() {
@@ -91,27 +94,29 @@ public class FragmentMainActivity extends FragmentActivity implements ViewPager.
                 R.layout.activity_fragment_basket,null).findViewById(R.id.iv_empty);
 
         list= new ArrayList<>();
-        list.add(new Home());
-        list.add(new Basket());
-        //list.add(basket);
-        list.add(new My());
-        list.add(new FragmentMore());
+        fragmentHome=new Home();
+        fragmentBasket=new Basket();
+        fragmentMy=new My();
+        fragmentMore=new FragmentMore();
+        list.add(fragmentHome);
+        list.add(fragmentBasket);
+        list.add(fragmentMy);
+        list.add(fragmentMore);
 
-        viewPager=(ViewPager)findViewById(R.id.viewpager_main);
-        viewPager.setAdapter(new MyPagerAdapter(getSupportFragmentManager(),list));
+        /*viewPager=(ViewPager)findViewById(R.id.viewpager_main);
+        viewPager.setAdapter(new MyPagerAdapter(getSupportFragmentManager(), list));
         viewPager.setCurrentItem(0);
-        viewPager.setOnPageChangeListener(this);
-
+        viewPager.setOnPageChangeListener(this);*/
 
     }
-    /*private void setDefaultFragment(){
+    private void setDefaultFragment(){
         FragmentManager fm=getSupportFragmentManager();
         FragmentTransaction ft=fm.beginTransaction();
         ft.replace(frameID,fragmentHome);
         ft.commit();
-    }*/
+    }
 
-    @Override
+   /* @Override
     public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
     }
@@ -144,41 +149,42 @@ public class FragmentMainActivity extends FragmentActivity implements ViewPager.
     @Override
     public void onPageScrollStateChanged(int state) {
 
-    }
+    }*/
 
     private class MyBtnOnclick implements View.OnClickListener {
 
         @Override
         public void onClick(View v) {
-            /*FragmentManager fm=getSupportFragmentManager();
-            FragmentTransaction ft=fm.beginTransaction();*/
+            FragmentManager fm=getSupportFragmentManager();
+            FragmentTransaction ft=fm.beginTransaction();
             initBottomBtn();
             switch (v.getId()){
                 case R.id.mybutton_home:
-                    //ft.replace(frameID, fragmentHome);
-                    viewPager.setCurrentItem(0);
+                    ft.replace(frameID, fragmentHome);
+                    //viewPager.setCurrentItem(0);
                     imageHome.setImageResource(R.drawable.main_home_click);
                     textHome.setTextColor(Color.parseColor("#28CCFC"));
                     break;
                 case R.id.mybutton_basket:
-                    //ft.replace(frameID, fragmentBasket);
-                    viewPager.setCurrentItem(1);
+                    ft.replace(frameID, fragmentBasket);
+                    //viewPager.setCurrentItem(1);
                     imageBasket.setImageResource(R.drawable.main_basket_click);
                     textBasket.setTextColor(Color.parseColor("#28CCFC"));
                     break;
                 case R.id.mybutton_my:
-                    //ft.replace(frameID,fragmentMy);
-                    viewPager.setCurrentItem(2);
+                    ft.replace(frameID, fragmentMy);
+                    //viewPager.setCurrentItem(2);
                     imageMy.setImageResource(R.drawable.main_my_click);
                     textMy.setTextColor(Color.parseColor("#28CCFC"));
                     break;
                 case R.id.mybutton_more:
-                    viewPager.setCurrentItem(3);
+                    ft.replace(frameID, fragmentMore);
+                    //viewPager.setCurrentItem(3);
                     imageMore.setImageResource(R.drawable.main_more_click);
                     textMore.setTextColor(Color.parseColor("#28CCFC"));
                     break;
             }
-            //ft.commit();
+            ft.commit();
         }
     }
 
@@ -211,30 +217,6 @@ public class FragmentMainActivity extends FragmentActivity implements ViewPager.
             has_basket.setVisibility(View.VISIBLE);
         }
 
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        Log.i("MainActivity log","onDestroy");
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        Log.i("MainActivity log", "onPause");
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        Log.i("MainActivity log", "onStart");
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        Log.i("MainActivity log", "onStop");
     }
 
     public static <T> Request<T> startRequest(Request paramRequest,Object paramObject){

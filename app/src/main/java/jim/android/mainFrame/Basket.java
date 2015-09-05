@@ -46,9 +46,17 @@ public class Basket extends LazyFragment implements View.OnClickListener{
         initView();
 
         isPrepared=true;
-        lazyLoad();
 
+        adapter=new BasketAdapter(FragmentMainActivity.basketList, getActivity(),ivEmpty,displayPrice);
+        myListView.setAdapter(adapter);
+        if (FragmentMainActivity.basketList.size()==0){
+            ivEmpty.setVisibility(View.VISIBLE);
+            pay.setClickable(false);
+        } else {
+            ivEmpty.setVisibility(View.GONE);
+            pay.setClickable(true);
 
+        }
         return view;
     }
 
@@ -86,10 +94,14 @@ public class Basket extends LazyFragment implements View.OnClickListener{
     public void onResume() {
         super.onResume();
         Log.i("Basket log", "onResume");
-
-
+        adapter.notifyDataSetChanged();
     }
 
+    @Override
+    public void onPause() {
+        super.onPause();
+        Log.i("Basket log", "onPause");
+    }
 
     @Override
     public void onClick(View v) {
@@ -108,65 +120,13 @@ public class Basket extends LazyFragment implements View.OnClickListener{
         }
     }
 
-    @Override
-    public void onPause() {
-        super.onPause();
-        Log.i("Basket log", "onPause");
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-        Log.i("Basket log", "onStop");
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        Log.i("Basket log", "onStart");
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        Log.i("Basket log", "onDestroy");
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        Log.i("Basket log", "onDetach");
-    }
-
-    @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-        Log.i("Basket log", "onAttach");
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        Log.i("Basket log", "onCreate");
-    }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        Log.i("Basket log", "onDestroyView");
-    }
-
-    @Override
-    public void setUserVisibleHint(boolean isVisibleToUser) {
-        super.setUserVisibleHint(isVisibleToUser);
-
-    }
 
     @Override
     protected void lazyLoad() {
         if (!isPrepared||!isVisible)
             return;
-        Log.i("Jim log","Basket can be excutee?");
+        Log.i("Jim log", "Basket can be excutee?");
+
         adapter=new BasketAdapter(FragmentMainActivity.basketList, getActivity(),ivEmpty,displayPrice);
         myListView.setAdapter(adapter);
         if (FragmentMainActivity.basketList.size()==0){
@@ -175,6 +135,7 @@ public class Basket extends LazyFragment implements View.OnClickListener{
         } else {
             ivEmpty.setVisibility(View.GONE);
             pay.setClickable(true);
+
         }
 
     }

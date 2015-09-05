@@ -53,6 +53,7 @@ public class Home extends LazyFragment implements View.OnClickListener {
 
             viewPager.setCurrentItem(currentItem);
 
+
         }
     };
 
@@ -65,12 +66,13 @@ public class Home extends LazyFragment implements View.OnClickListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.activity_fragment_home, container, false);
 
-        initView();
-        initUI();
-
+        if (savedInstanceState==null){
+            Log.i("Home log", "onCreateView");
+            initView();
+            initUI();
+        }
         return view;
     }
-
 
     private void initView() {
         Log.i("imageViewList", "first");
@@ -82,7 +84,6 @@ public class Home extends LazyFragment implements View.OnClickListener {
         layout = (LinearLayout) view.findViewById(R.id.frag_home_index_container);
         pieceWashBtn.setOnClickListener(this);
         packetWashBtn.setOnClickListener(this);
-
     }
 
     private void initUI() {
@@ -115,6 +116,7 @@ public class Home extends LazyFragment implements View.OnClickListener {
 
     private void startPlay() {
 
+        Log.i("Home log", "startPlay");
         scheduledExecutorService = Executors.newSingleThreadScheduledExecutor();
         scheduledExecutorService.scheduleAtFixedRate(new SlideShowTask(), 1L, 4L, TimeUnit.SECONDS);
     }
@@ -183,7 +185,6 @@ public class Home extends LazyFragment implements View.OnClickListener {
     @Override
     protected void lazyLoad() {
 
-
     }
 
     private class SlideShowTask implements Runnable {
@@ -202,8 +203,9 @@ public class Home extends LazyFragment implements View.OnClickListener {
     }
 
     @Override
-    public void onDestroy() {
-        super.onDestroy();
+    public void onDetach() {
+        super.onDetach();
         stopPlay();
     }
+
 }

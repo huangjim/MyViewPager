@@ -1,9 +1,9 @@
 package jim.android.mainFrame;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,10 +38,13 @@ public class My extends LazyFragment {
     private GridView gridView;
     private TextView textName;
     private TextView textPhone;
-    private SharedPreferences preferences;
+
 
     private List<Map<String,Object>> list;
     private SimpleAdapter adapter=null;
+    private MyApplication application=MyApplication.getInstance();
+    private SharedPreferences preferences;
+    private boolean isPrepared;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -49,15 +52,18 @@ public class My extends LazyFragment {
         view=inflater.inflate(R.layout.activity_fragment_my,container,false);
 
         initView();
+        isPrepared =true;
+        Log.i("My log", "onCreateView");
 
         return view;
 
     }
     private void initView() {
+        preferences=application.getPreferences();
         gridView=(GridView)view.findViewById(R.id.frag_my_grid);
         textName=(TextView)view.findViewById(R.id.frag_my_name);
         textPhone=(TextView)view.findViewById(R.id.frag_my_phone);
-        preferences=getActivity().getSharedPreferences("userinfo", Context.MODE_PRIVATE);
+
         list= new ArrayList<>();
 
 
@@ -82,20 +88,28 @@ public class My extends LazyFragment {
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                switch (position){
+                switch (position) {
                     case 0:
                         break;
                     case 1:
                         break;
                     case 2:
+                        if (application.getPreferences() != null) {
+                            Intent intent2 = new Intent(getActivity(), MyLocation.class);
+                            startActivity(intent2);
+                        } else {
+                            Intent intent2 = new Intent(getActivity(), UserInfo.class);
+                            startActivity(intent2);
+                        }
+
                         break;
                     case 3:
-                        Toast.makeText(getActivity(),"推荐码1be2",Toast.LENGTH_LONG).show();
-                        Intent intent=new Intent(getActivity(),ShareCode.class);
+                        Toast.makeText(getActivity(), "推荐码1be2", Toast.LENGTH_LONG).show();
+                        Intent intent = new Intent(getActivity(), ShareCode.class);
                         startActivity(intent);
                         break;
                     case 4:
-                        Intent intent1=new Intent(getActivity(),ShareCodeCheck.class);
+                        Intent intent1 = new Intent(getActivity(), ShareCodeCheck.class);
                         startActivity(intent1);
                         break;
                 }
@@ -103,23 +117,26 @@ public class My extends LazyFragment {
         });
     }
 
-    @Override
-    public void setUserVisibleHint(boolean isVisibleToUser) {
-        super.setUserVisibleHint(isVisibleToUser);
-        if (isVisibleToUser){
-            //textPhone.setText("");
-            //textName.setText("");
-            if (preferences.getInt("sex01",-1)==1)
-                textName.setText(preferences.getString("name","")+"先生");
-            else if (preferences.getInt("sex01",-1)==0)
-                textName.setText(preferences.getString("name","")+"女士");
-            textPhone.setText(preferences.getString("phone",""));
-        }
-    }
 
     @Override
     protected void lazyLoad() {
+        if (!isVisible||!isPrepared)
+            return;
+        if (preferences.getInt("sex01",-1)==1)
+            textName.setText(preferences.getString("name","")+"先生");
+        else if (preferences.getInt("sex01",-1)==0)
+            textName.setText(preferences.getString("name","")+"女士");
+        textPhone.setText(preferences.getString("phone",""));
 
+    }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (preferences.getInt("sex01",-1)==1)
+            textName.setText(preferences.getString("name","")+"先生");
+        else if (preferences.getInt("sex01",-1)==0)
+            textName.setText(preferences.getString("name","")+"女士");
+        textPhone.setText(preferences.getString("phone", ""));
     }
 }

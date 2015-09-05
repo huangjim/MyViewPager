@@ -65,7 +65,7 @@
             <LinearLayout
                 android:id="@+id/linearLayout"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/DIMEN_100PX"
+                android:layout_height="@dimen/DIMEN_80PX"
                 android:layout_alignParentBottom="true"
                 android:background="@color/color_white"
                 android:gravity="center_vertical"
@@ -108,7 +108,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/empty_beaskt"
-                android:visibility="invisible" />
+                android:visibility="visible" />
         </RelativeLayout>
     </FrameLayout>
 </RelativeLayout>

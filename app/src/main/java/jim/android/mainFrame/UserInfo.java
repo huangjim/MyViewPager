@@ -72,7 +72,6 @@ public class UserInfo extends Activity implements View.OnClickListener{
                     man.setTextColor(Color.WHITE);
                     woman.setTextColor(Color.BLACK);
 
-
                 } else if (checkedId == R.id.lady) {
                     sexFlag=0;
                     woman.setTextColor(Color.WHITE);

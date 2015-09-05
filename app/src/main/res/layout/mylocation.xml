@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/basket_layout_title"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@color/color_white">
+
+        <ImageButton
+            android:id="@+id/location_back"
+            android:paddingRight="5dp"
+            android:paddingLeft="5dp"
+            android:layout_width="15dp"
+            android:layout_height="25dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="15dp"
+            android:background="@drawable/basket_left" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="我的地址"
+            android:textSize="22sp" />
+
+        <TextView
+            android:id="@+id/modify_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="15dp"
+            android:text="修改"
+            android:textColor="@color/color_blue"
+            android:textSize="17sp" />
+    </RelativeLayout>
+
+    <LinearLayout
+
+        android:layout_marginTop="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:orientation="horizontal">
+        <ImageView
+            android:background="@color/color_white"
+            android:layout_gravity="center"
+            android:padding="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:src="@drawable/image_name"/>
+        <TextView
+            android:gravity="center_vertical"
+            android:background="@color/color_white"
+            android:id="@+id/mylocation_name"
+            android:textSize="18sp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="黄先生"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+
+        android:layout_marginTop="0.5dp"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:orientation="horizontal">
+        <ImageView
+            android:background="@color/color_white"
+            android:layout_gravity="center"
+            android:padding="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:src="@drawable/image_phone"/>
+        <TextView
+            android:gravity="center_vertical"
+            android:background="@color/color_white"
+            android:id="@+id/mylocation_phone"
+            android:textSize="18sp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="13246724187"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginTop="0.5dp"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:orientation="horizontal">
+        <ImageView
+            android:background="@color/color_white"
+            android:layout_gravity="center"
+            android:padding="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:src="@drawable/image_location"/>
+        <TextView
+            android:gravity="center_vertical"
+            android:background="@color/color_white"
+            android:id="@+id/mylocation_location"
+            android:textSize="18sp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="南大街"
+            />
+    </LinearLayout>
+
+
+
+</LinearLayout>

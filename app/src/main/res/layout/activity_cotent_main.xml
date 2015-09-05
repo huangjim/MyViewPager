@@ -8,11 +8,11 @@
         android:layout_height="match_parent"
         android:layout_above="@+id/frame_btn_view">
 
-        <android.support.v4.view.ViewPager
+        <!--<android.support.v4.view.ViewPager
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/viewpager_main"
-            android:layout_gravity="center" />
+            android:layout_gravity="center" />-->
     </FrameLayout>
 
     <TextView
@@ -23,7 +23,7 @@
     <LinearLayout
         android:id="@+id/frame_btn_view"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="55dp"
         android:orientation="horizontal"
         android:layout_alignParentBottom="true"
         android:background="@color/color_white"

@@ -1,6 +1,7 @@
 package jim.android.mainFrame;
 
 import android.app.Application;
+import android.content.SharedPreferences;
 import android.util.Log;
 import android.widget.ImageView;
 
@@ -9,6 +10,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.lidroid.xutils.DbUtils;
+import com.lidroid.xutils.HttpUtils;
 import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
@@ -29,20 +32,24 @@ import jim.android.utils.BasketItemMsg;
 public class MyApplication extends Application {
 
     private static List<ImageView> imageViewList;
-    private static String imageUrls[];
     private static MyApplication myApplication;
+    private static SharedPreferences preferences;
+    public DbUtils dbUtils;
+    public HttpUtils httpUtils;
 
 
     public List<ImageView> getImageViewList() {
+
         return imageViewList;
     }
 
-    public String[] getImageUrls() {
-        return imageUrls;
+    public SharedPreferences getPreferences() {
+
+        return preferences;
     }
 
     public static MyApplication getInstance(){
-       /* if (myApplication==null){
+        /*if (myApplication==null){
             synchronized (MyApplication.class){
                 if (myApplication==null){
 
@@ -77,7 +84,6 @@ public class MyApplication extends Application {
                     if (localJSONObject.getInt("status_code") != 1)
                         return;
                     JSONArray localJSONArray = localJSONObject.getJSONArray("data");
-                    imageUrls = new String[localJSONArray.length()];
                     for (int i = 0; i < localJSONArray.length(); i++) {
                         String str = ((JSONObject) localJSONArray.get(i)).getString("image");
                         Log.i("str", str);
@@ -86,7 +92,6 @@ public class MyApplication extends Application {
                         imageView.setScaleType(ImageView.ScaleType.FIT_XY);
                         ImageLoader.getInstance().displayImage(str,imageView);
                         imageViewList.add(imageView);
-
 
                     }
 
@@ -107,6 +112,10 @@ public class MyApplication extends Application {
     private void initUtil(){
         myApplication=new MyApplication();
         imageViewList=new ArrayList<>();
+        preferences=getSharedPreferences("userinfo",MODE_PRIVATE);
+        dbUtils=DbUtils.create(this);
+        httpUtils=new HttpUtils();
+
     }
 
 

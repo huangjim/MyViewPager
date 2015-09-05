@@ -170,13 +170,13 @@
 
         </RelativeLayout>
         <RelativeLayout
-            android:visibility="gone"
+
             android:background="@color/color_white"
             android:id="@+id/have_location"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingTop="10dp"
-            android:layout_marginLeft="@dimen/DIMEN_20PX"
+            android:paddingLeft="@dimen/DIMEN_20PX"
             >
 
             <LinearLayout
@@ -194,6 +194,7 @@
                     android:src="@drawable/image_name" />
 
                 <TextView
+                    android:id="@+id/userinfo_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
@@ -215,6 +216,7 @@
                     android:src="@drawable/image_location" />
 
                 <TextView
+                    android:id="@+id/userinfo_address"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
@@ -237,6 +239,7 @@
                     android:src="@drawable/image_phone" />
 
                 <TextView
+                    android:id="@+id/userinfo_phone"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
