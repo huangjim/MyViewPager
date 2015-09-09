@@ -17,6 +17,9 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.assist.ImageScaleType;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -43,8 +46,10 @@ public class Home extends LazyFragment implements View.OnClickListener {
     private ScheduledExecutorService scheduledExecutorService;
     private List<Bitmap> bitmapList;
     private List<ImageView> imageViewList;
+    private List<String> imageUrl;
     private int currentItem = 0;
     private MyApplication application=MyApplication.getInstance();
+    private DisplayImageOptions options;
 
 
     private Handler handler = new Handler() {
@@ -77,6 +82,13 @@ public class Home extends LazyFragment implements View.OnClickListener {
     private void initView() {
         Log.i("imageViewList", "first");
         imageViewList = application.getImageViewList();
+        imageUrl=application.getImageUrl();
+        options=new DisplayImageOptions.Builder()
+                .cacheInMemory(true)
+                .cacheOnDisk(true)
+                .imageScaleType(ImageScaleType.IN_SAMPLE_POWER_OF_2)
+                .bitmapConfig(Bitmap.Config.RGB_565)
+                .build();
         bitmapList = new ArrayList<>();
         Button pieceWashBtn = (Button) view.findViewById(R.id.frag_home_btn01);
         Button packetWashBtn = (Button) view.findViewById(R.id.frag_home_btn02);
@@ -88,10 +100,10 @@ public class Home extends LazyFragment implements View.OnClickListener {
 
     private void initUI() {
 
-        if (imageViewList.size()==0)
+        if (imageUrl.size()==0)
             return;
 
-        for (int i = 0;i<imageViewList.size() ; ++i) {
+        for (int i = 0;i<imageUrl.size() ; ++i) {
 
             ImageView image02 = new ImageView(getActivity());
             image02.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
@@ -100,8 +112,8 @@ public class Home extends LazyFragment implements View.OnClickListener {
             image02.setSelected(0 == i ? true : false);
             layout.addView(image02);
 
-            if (i>=imageViewList.size()-1){
-                viewPager.setAdapter(new MyPAdapter(imageViewList));
+            if (i>=imageUrl.size()-1){
+                viewPager.setAdapter(new MyPAdapter(imageViewList,options,imageUrl,getActivity()));
                 viewPager.setOnPageChangeListener(new MyPChangeAdapter(layout));
                 viewPager.setFocusable(true);
             }
@@ -177,7 +189,6 @@ public class Home extends LazyFragment implements View.OnClickListener {
                     localObject = b;
                 }
                 break;
-
         }
 
     }

@@ -1,5 +1,6 @@
 package jim.android.pieceWash;
 
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -8,6 +9,12 @@ import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.Volley;
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.assist.ImageScaleType;
 
 import java.util.ArrayList;
 
@@ -23,6 +30,8 @@ public class PieceWashMain extends FragmentActivity implements ViewPager.OnPageC
     private Button btnSpring,btnSummer,btnAutumn,btnWinter;
     private ArrayList<Fragment> list;
     private Button btnBack;
+    private static RequestQueue queue;
+    public static DisplayImageOptions options;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +41,8 @@ public class PieceWashMain extends FragmentActivity implements ViewPager.OnPageC
     }
 
     private void initView() {
+
+        queue= Volley.newRequestQueue(getApplicationContext());
         btnBack=(Button)findViewById(R.id.piece_wash_back);
         viewPager=(ViewPager)findViewById(R.id.piece_wash_viewpager);
         btnSpring=(Button)findViewById(R.id.btn_sprint);
@@ -49,6 +60,13 @@ public class PieceWashMain extends FragmentActivity implements ViewPager.OnPageC
         FragmentSummer fragmentSummer = new FragmentSummer();
         FragmentAutumn fragmentAutumn = new FragmentAutumn();
         FragmentWinter fragmentWinter = new FragmentWinter();
+
+        options=new DisplayImageOptions.Builder()
+                .cacheInMemory(true)
+                .cacheOnDisk(true)
+                .imageScaleType(ImageScaleType.IN_SAMPLE_POWER_OF_2)
+                .bitmapConfig(Bitmap.Config.RGB_565)
+                .build();
 
         list=new ArrayList<Fragment>();
         list.add(fragmentSpring);
@@ -154,5 +172,18 @@ public class PieceWashMain extends FragmentActivity implements ViewPager.OnPageC
     private void showToast(String msg){
 
         Toast.makeText(this, msg, Toast.LENGTH_LONG).show();
+    }
+
+    public static <T> Request<T> startRequest(Request<T> paramRequest, Object paramObject)
+    {
+        paramRequest.setTag(paramObject);
+        Request localRequest = queue.add(paramRequest);
+        queue.start();
+        return localRequest;
+    }
+
+    public static void camcelRequest(Object paramObject)
+    {
+        queue.cancelAll(paramObject);
     }
 }

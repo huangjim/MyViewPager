@@ -1,5 +1,7 @@
 package jim.android.utils;
 
+import android.graphics.drawable.Drawable;
+
 /**
  * Created by Jim Huang on 2015/8/9.
  */
@@ -9,13 +11,6 @@ public class BasketItemMsg {
     private String clothesName;
     private int account;
     private int price;
-
-    public BasketItemMsg(int imageId, String clothesName, int account, int price) {
-        this.imageId = imageId;
-        this.clothesName = clothesName;
-        this.account = account;
-        this.price = price;
-    }
 
     public BasketItemMsg(){
 

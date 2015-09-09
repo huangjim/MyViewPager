@@ -200,6 +200,20 @@
                     android:layout_marginLeft="10dp"
                     android:text="黄先生"
                     android:textSize="16dp" />
+
+                <ImageView
+                    android:layout_marginLeft="20dp"
+                    android:layout_width="@dimen/DIMEN_30PX"
+                    android:layout_height="@dimen/DIMEN_50PX"
+                    android:src="@drawable/image_phone" />
+
+                <TextView
+                    android:id="@+id/userinfo_phone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="13246724187"
+                    android:textSize="16dp" />
             </LinearLayout>
 
             <LinearLayout
@@ -233,18 +247,6 @@
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
 
-                <ImageView
-                    android:layout_width="@dimen/DIMEN_30PX"
-                    android:layout_height="@dimen/DIMEN_50PX"
-                    android:src="@drawable/image_phone" />
-
-                <TextView
-                    android:id="@+id/userinfo_phone"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:text="13246724187"
-                    android:textSize="16dp" />
             </LinearLayout>
 
             <ImageButton

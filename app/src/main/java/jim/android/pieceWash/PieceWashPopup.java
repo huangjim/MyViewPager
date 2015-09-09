@@ -1,7 +1,10 @@
 package jim.android.pieceWash;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
@@ -39,6 +42,13 @@ public class PieceWashPopup extends PopupWindow {
         this.view=view;
         this.bool=bool;
         this.bean =basketItemMsg;
+        setContentView(view);
+        setWindowLayoutMode(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+        setFocusable(true);
+        ColorDrawable drawable = new ColorDrawable(Color.parseColor("#58000000"));
+        setBackgroundDrawable(drawable);
+        setOutsideTouchable(true);
+        setAnimationStyle(R.style.PopupAnimation);
         initView();
     }
 

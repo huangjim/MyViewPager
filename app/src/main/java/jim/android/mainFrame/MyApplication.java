@@ -12,15 +12,18 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.lidroid.xutils.DbUtils;
 import com.lidroid.xutils.HttpUtils;
+import com.nostra13.universalimageloader.cache.disc.impl.UnlimitedDiskCache;
 import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
+import com.nostra13.universalimageloader.utils.StorageUtils;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,8 +39,8 @@ public class MyApplication extends Application {
     private static SharedPreferences preferences;
     public DbUtils dbUtils;
     public HttpUtils httpUtils;
-
-
+    private static List<String> imageUrl;
+    private File cacheDir;
     public List<ImageView> getImageViewList() {
 
         return imageViewList;
@@ -46,6 +49,11 @@ public class MyApplication extends Application {
     public SharedPreferences getPreferences() {
 
         return preferences;
+    }
+
+    public List<String> getImageUrl(){
+
+        return imageUrl;
     }
 
     public static MyApplication getInstance(){
@@ -70,6 +78,8 @@ public class MyApplication extends Application {
                 .denyCacheImageMultipleSizesInMemory()
                 .diskCacheFileNameGenerator(new Md5FileNameGenerator())
                 .tasksProcessingOrder(QueueProcessingType.LIFO)
+                .diskCacheSize(30 * 1024 * 1024)
+                .diskCache(new UnlimitedDiskCache(cacheDir))
                 .writeDebugLogs()
                 .build();
         ImageLoader.getInstance().init(configuration);
@@ -87,7 +97,7 @@ public class MyApplication extends Application {
                     for (int i = 0; i < localJSONArray.length(); i++) {
                         String str = ((JSONObject) localJSONArray.get(i)).getString("image");
                         Log.i("str", str);
-
+                        imageUrl.add(str);
                         ImageView imageView=new ImageView(getApplicationContext());
                         imageView.setScaleType(ImageView.ScaleType.FIT_XY);
                         ImageLoader.getInstance().displayImage(str,imageView);
@@ -110,8 +120,10 @@ public class MyApplication extends Application {
 
     }
     private void initUtil(){
+        cacheDir= StorageUtils.getOwnCacheDirectory(getApplicationContext(),"imageLoader/Cache");
         myApplication=new MyApplication();
         imageViewList=new ArrayList<>();
+        imageUrl=new ArrayList<>();
         preferences=getSharedPreferences("userinfo",MODE_PRIVATE);
         dbUtils=DbUtils.create(this);
         httpUtils=new HttpUtils();
